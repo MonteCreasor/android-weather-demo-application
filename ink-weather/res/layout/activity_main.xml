@@ -34,7 +34,7 @@
 	<fragment
 	    android:name="com.ink.weather.fragment.SelectCountryFragment"
 	    android:id="@+id/activity_main_navigation_fragment"
-	    android:layout_gravity="start"
+	    android:layout_gravity="left"
 		style="@style/FragmentDrawerLayout"/>
 
 </android.support.v4.widget.DrawerLayout>
