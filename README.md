@@ -6,7 +6,7 @@ source: /ink-weather/
 
 tests: /ink-weather/tests/
 
-dependancies: /android-support-v7-appcompat/, /ink-weather/lib/volley.jar
+dependancies: /ink-weather/lib/
 
 # About
 This demo application uses the openweathermap.org API to query and return weather details for world cities. It utilises the Volley networking
