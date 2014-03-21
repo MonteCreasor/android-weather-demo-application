@@ -1,8 +1,11 @@
 City weather demo application
 ==================================================
 Android version: 2.3.3
+
 source: /ink-weather/
+
 tests: /ink-weather/tests/
+
 dependancies: /android-support-v7-appcompat/, /ink-weather/lib/volley.jar
 
 # About
@@ -20,6 +23,7 @@ create a new instance of the class. The IDTO toJson() method is then populated w
 triggered.
 
 **Why?**
+
 This approach decouples the raw api data from the application code, it also encapsulates the data transfer format within the DTO objects. If the api
 depreciated JSON and switched to an XML only format, a toXML() method could be added to IDTO and a new parsing implementation written for each DTO 
 without having to modify any other application code (apart from changing toJson() -> toXML() in VolleyRequest).
@@ -29,6 +33,7 @@ The WeatherApplication class inherits android.app.Application and follows the si
 it as an accessor method.
 
 **Why?**
+
 Rather than creating a new instance of the volley RequestQueue each time it is required, it is attached to the WeatherApplication singleton 
 throughout the lifecycle of the application. 
 
@@ -39,6 +44,7 @@ classes; getContentLayout(), getNavigationContentLayout() and getNavigationDrawe
 provide the BaseActivity with the layouts it requires to animate the NavigationDrawer.
 
 **Why?**
+
 If the application was extended to include multiple activities that use a NavigationDrawer, no code duplication would be required. The responsibility 
 of the NavigationDrawer has already been given to BaseActivity, any Activity that extends from it will also obtain the functionality. 
 
