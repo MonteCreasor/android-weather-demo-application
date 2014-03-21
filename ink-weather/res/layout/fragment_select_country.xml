@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fragment_select_country_background"
+    android:orientation="vertical">
+    
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/fragment_select_country_search_for_city"
+		style="@style/SelectCountryHeader"/>
+    
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+	
+	    <EditText 
+	        android:id="@+id/fragment_select_city_search_edittext"
+			android:layout_width="0dp"
+			android:layout_weight=".7"
+			android:layout_height="wrap_content"
+			android:inputType="text"
+			android:background="@null"
+			android:textColor="#FFFFFF"
+			android:textColorHint="#BBBBBB"
+			android:textSize="14sp"
+			android:padding="@dimen/activity_default_padding"
+			android:imeOptions="actionDone"
+			android:hint="@string/fragment_select_country_search"/>
+	    
+	    <Button
+	        android:id="@+id/fragment_select_city_search_button"
+			android:layout_width="0dp"
+			android:layout_weight=".3"
+			android:layout_height="wrap_content"
+			android:text="Search"
+			style="@style/Button"
+			android:layout_marginRight="@dimen/activity_default_padding_minor"/>
+	        
+    </LinearLayout>
+    
+    <TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/fragment_select_country_popular_cities"
+		style="@style/SelectCountryHeader"/>
+    
+    <ListView 
+        android:id="@+id/fragment_select_country_popular_city_list"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/fragment_select_country_background"/>
+    
+</LinearLayout>

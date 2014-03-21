@@ -1,0 +1,16 @@
+<resources>
+
+    <dimen name="activity_default_padding">10dp</dimen>
+    <dimen name="activity_default_padding_minor">5dp</dimen>
+	<dimen name="activity_textSize">12sp</dimen>
+	
+	<dimen name="activity_main_select_new_city_margin">20dp</dimen>
+	<dimen name="activity_main_select_new_city_text">16sp</dimen>
+	
+	<dimen name="button_padding">5dp</dimen>
+	
+	<dimen name="view_weather_data_width">250dp</dimen>
+	
+	<dimen name="view_weather_data_row_text">12sp</dimen>
+
+</resources>

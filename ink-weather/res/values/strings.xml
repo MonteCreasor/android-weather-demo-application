@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">INK Weather</string>
+    
+    <string name="rest_weather_condition_icon">http://openweathermap.org/img/w/%1$s</string>
+    <string name="rest_weather">http://api.openweathermap.org/data/2.5/find?q=%1$s&amp;mode=json&amp;units=metric</string>
+    
+    <string name="activity_main_select_new_city">Select new city</string>
+    <string name="activity_main_could_not_find_city">Could not find city</string>
+    <string name="activity_main_could_not_connect">Could not connect to the internet, please check your connection and try again</string>
+    
+    <string name="activity_dialog_ok">OK</string>
+    <string name="activity_loading_weather">Loading&#8230;</string>
+    
+    <string name="view_weather_data_row_temperature_range">Temperature range</string>
+    <string name="view_weather_data_row_atmospheric_pressure">Atmospheric Pressure</string>
+    <string name="view_weather_data_row_humidity">Humidity</string>
+    
+    <string name="fragment_select_country_popular_cities">Popular cities</string>
+    <string name="fragment_select_country_search_for_city">Search for city</string>
+    <string name="fragment_select_country_search">e.g Berlin, Germany&#8230;</string>
+
+</resources>
