@@ -4,6 +4,7 @@ import org.openweather.R;
 import org.openweathermap.activity.base.BaseActivity;
 import org.openweathermap.dto.ResultDTO;
 import org.openweathermap.dto.base.IDTO;
+import org.openweathermap.fragment.ModalDialogFragment;
 import org.openweathermap.utils.RESTProvider;
 import org.openweathermap.view.WeatherDataView;
 import org.openweathermap.volley.callback.VolleyResponseCallback;
@@ -59,7 +60,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 			getNavigationDrawer().closeDrawer(Gravity.LEFT);
 		}
 		
-		showDialog(getResources().getString(R.string.activity_loading_weather),DialogActivity.BUTTON_TYPE_NONE);
+		showDialog(getResources().getString(R.string.activity_loading_weather),ModalDialogFragment.BUTTON_TYPE_BLOCKING);
 		
 		VolleyRequest volleyRequest = new VolleyRequest(); 
 		volleyRequest.setVollyResponseCallback(this);
@@ -83,7 +84,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 		} else {
 			showDialog(
 				getResources().getString(R.string.activity_main_could_not_find_city),
-				DialogActivity.BUTTON_TYPE_OK
+				ModalDialogFragment.BUTTON_TYPE_OK
 			);
 		}
 	}
@@ -121,12 +122,12 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 		if (error.networkResponse == null) {
 			showDialog(
 				getResources().getString(R.string.activity_main_could_not_connect),
-				DialogActivity.BUTTON_TYPE_OK
+				ModalDialogFragment.BUTTON_TYPE_OK
 			);
 		} else {
 			showDialog(
 				getResources().getString(R.string.activity_main_could_not_find_city),
-				DialogActivity.BUTTON_TYPE_OK
+				ModalDialogFragment.BUTTON_TYPE_OK
 			);
 		}
 	}

@@ -1,11 +1,11 @@
 package org.openweathermap.activity.base;
 
 import org.openweather.R;
-import org.openweathermap.activity.DialogActivity;
+import org.openweathermap.fragment.ModalDialogFragment;
 
 import android.R.color;
-import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -21,8 +21,11 @@ import android.widget.FrameLayout;
  * @author samkirton
  */
 public abstract class BaseActivity extends FragmentActivity {
+	private ModalDialogFragment uiModalDialogFragment;
+	
 	private ActionBarDrawerToggle mDrawerToggle;
 	private float mLastTranslate;
+	private boolean mDialogOpen;
 	
 	/**
 	 * Setup the navigation drawer and hook the onNavigationDrawerClosed 
@@ -75,18 +78,29 @@ public abstract class BaseActivity extends FragmentActivity {
 	 * Close the loading dialog
 	 */
 	protected void closeDialog() {
-		Intent intent = new Intent(DialogActivity.BROADCAST_CLOSE_DIALOG);
-		sendBroadcast(intent);
+		if (uiModalDialogFragment != null) {
+			mDialogOpen = false;
+			uiModalDialogFragment.dismiss();
+		}
 	}
 	
 	/**
 	 * Open the loading dialog and display the loadingText
 	 */
-	protected void showDialog(String loadingText, int buttonType) {
-		Intent loadingIntent = new Intent(getBaseContext(),DialogActivity.class);
-		loadingIntent.putExtra(DialogActivity.EXTRA_DIALOG_TEXT, loadingText);
-		loadingIntent.putExtra(DialogActivity.EXTRA_BUTTON_TYPE, buttonType);
-		startActivityForResult(loadingIntent, 0);
+	protected void showDialog(String dialogText, int buttonType) {
+		// Close the existing dialog before opening another one
+		if (mDialogOpen) 
+			closeDialog();
+		
+		// Open the fragment dialog with the provided extras
+		Bundle args = new Bundle();
+		args.putString(ModalDialogFragment.EXTRA_DIALOG_TEXT, dialogText);
+		args.putInt(ModalDialogFragment.EXTRA_BUTTON_TYPE, buttonType);
+
+		mDialogOpen = true;
+		uiModalDialogFragment = new ModalDialogFragment();
+		uiModalDialogFragment.setArguments(args);
+		uiModalDialogFragment.show(getSupportFragmentManager(), "dialog");
 	}
 	
 	/**
