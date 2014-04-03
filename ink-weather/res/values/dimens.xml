@@ -11,6 +11,9 @@
 	<dimen name="activity_main_select_new_city_text">16sp</dimen>
 	<dimen name="activity_main_forecast_pager_margin">20dp</dimen>
 	
+	<!-- fragment_modal_dialog -->
+	<dimen name="fragment_modal_dialog_width">220dp</dimen>
+	
 	<!-- fragment_forecast -->
 	<dimen name="fragment_forecast_city_textsize">26sp</dimen>
 	<dimen name="fragment_forecast_latlng_textsize">16sp</dimen>
