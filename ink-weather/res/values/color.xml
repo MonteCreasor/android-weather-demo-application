@@ -14,6 +14,7 @@
    	
    	<!-- fragment_forecast -->
    	<color name="fragment_forecast_background">#EEEEEE</color>
+   	<color name="fragment_forecast_border">#333333</color>
     
    	<!-- fragment_dialog -->
     <color name="fragment_dialog_text_foreground">#333333</color>
