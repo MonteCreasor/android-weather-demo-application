@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 		VolleyRequest volleyRequest = new VolleyRequest(); 
 		volleyRequest.setVollyResponseCallback(this);
 		volleyRequest.execute(Request.Method.GET, 
-			RESTProvider.getWeatherUrl(city, getBaseContext()),
+			RESTProvider.getWeatherForecastUrl(city, getBaseContext()),
 			null,
 			ResultDTO.class
 		);
@@ -78,9 +78,9 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	private void requestWeatherInformation_Finished(ResultDTO resultDTO) {
 		closeDialog();
 		
-		if (resultDTO.getCityList() != null && resultDTO.getCityList().length > 0) {
-			uiWeatherDataView.init(resultDTO.getCityList()[0]);
-			requestWeatherConditionIcon(resultDTO.getCityList()[0].getWeatherList()[0].getIcon());
+		if (resultDTO.getDay() != null && resultDTO.getDay().length > 0) {
+			uiWeatherDataView.init(resultDTO.getDay()[0], resultDTO.getCity());
+			requestWeatherConditionIcon(resultDTO.getDay()[0].getWeatherList()[0].getIcon());
 		} else {
 			showDialog(
 				getResources().getString(R.string.activity_main_could_not_find_city),

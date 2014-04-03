@@ -18,6 +18,13 @@ public class RESTProvider {
 	}
 	
 	/**
+	 * @return	The retrieve weather forecast REST end point
+	 */
+	public static String getWeatherForecastUrl(String city,Context context) {
+		return context.getResources().getString(R.string.rest_weather_forecast, city);
+	}
+	
+	/**
 	 * @return	The retrieve weather conditions icon REST end point
 	 */
 	public static String getWeatherConditionIcon(String iconCode, Context context) {

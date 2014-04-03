@@ -2,6 +2,7 @@ package org.openweathermap.view;
 
 import org.openweather.R;
 import org.openweathermap.dto.CityDTO;
+import org.openweathermap.dto.DayDTO;
 import org.openweathermap.utils.StringHelper;
 
 import android.content.Context;
@@ -58,27 +59,24 @@ public class WeatherDataView extends LinearLayout {
 	
 	/**
 	 * Populate the view with city data and fade the layout in
-	 * @param cityDTO
 	 */
-	public void init(CityDTO cityDTO) {
-		String cityName = cityDTO.getName();
-		String countryName = cityDTO.getSys().getCountry();
-		String locationName = cityName + " (" + countryName + ")";
+	public void init(DayDTO dayDTO, CityDTO cityDTO) {
+		String locationName = cityDTO.getName() + " (" + cityDTO.getCountry() + ")";
 		double latitude = cityDTO.getCoord().getLat();
 		double longitude = cityDTO.getCoord().getLon();
 		String coords = "(" + String.valueOf(latitude) + "," + String.valueOf(longitude) + ")";
 		
 		//TODO: The API returns a collection of weather conditions, for this example
 		// the application assumes it always returns at least 1. This is dangerous assumption.
-		String mainCondition = cityDTO.getWeatherList()[0].getMain();
-		String conditionDescription = "(" + cityDTO.getWeatherList()[0].getDescription() + ")";
+		String mainCondition = dayDTO.getWeatherList()[0].getMain();
+		String conditionDescription = "(" + dayDTO.getWeatherList()[0].getDescription() + ")";
 		
-		String temperature = String.valueOf(cityDTO.getMain().getTemp()) + StringHelper.buildDegreeSymbol();
-		double temperatureMin = cityDTO.getMain().getTempMin();
-		double temperatureMax = cityDTO.getMain().getTempMax();
+		String temperature = String.valueOf(dayDTO.getTemp().getDay()) + StringHelper.buildDegreeSymbol();
+		double temperatureMin = dayDTO.getTemp().getMin();
+		double temperatureMax = dayDTO.getTemp().getMax();
 		String temperatureRange = String.valueOf(temperatureMin) + " - " + String.valueOf(temperatureMax) + StringHelper.buildDegreeSymbol();
-		String humidity = String.valueOf(cityDTO.getMain().getHumidity()) + "%";
-		String atmosphericPressure = String.valueOf(cityDTO.getMain().getPressure()) + "hpa";
+		String humidity = String.valueOf(dayDTO.getHumidity()) + "%";
+		String atmosphericPressure = String.valueOf(dayDTO.getPressure()) + "hpa";
 		
 		uiCityTextView.setText(locationName);
 		uiLongLatTextView.setText(coords);

@@ -43,7 +43,7 @@ public class CityArrayAdapter extends ArrayAdapter<CityDTO> {
 	    
 		// get the city name and location coords from the CityDTO
 	    CityDTO cityDTO = mValues[position];
-	    String city = cityDTO.getName() + " (" + cityDTO.getSys().getCountry() + ")";
+	    String city = cityDTO.getName() + " (" + cityDTO.getCountry() + ")";
 	    String locationCoords = StringHelper.buildLocationString(
 	    	cityDTO.getCoord().getLat(), 
 	    	cityDTO.getCoord().getLon()

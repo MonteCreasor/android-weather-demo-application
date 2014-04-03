@@ -2,9 +2,6 @@ package org.openweathermap.fragment;
 
 import org.openweather.R;
 import org.openweathermap.activity.MainActivity;
-import org.openweathermap.adapter.CityArrayAdapter;
-import org.openweathermap.dto.CityDTO;
-import org.openweathermap.utils.MockHelper;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,8 +36,8 @@ public class SelectCountryFragment extends Fragment implements OnItemClickListen
 		uiSearchButton = (Button)view.findViewById(R.id.fragment_select_city_search_button);
 		uiPopularCityListView = (ListView)view.findViewById(R.id.fragment_select_country_popular_city_list);
 		
-		CityArrayAdapter cityArrayAdapter = new CityArrayAdapter(getActivity(), MockHelper.buildMockCityArray());
-		uiPopularCityListView.setAdapter(cityArrayAdapter);
+//		CityArrayAdapter cityArrayAdapter = new CityArrayAdapter(getActivity(), MockHelper.buildMockCityArray());
+//		uiPopularCityListView.setAdapter(cityArrayAdapter);
 		
 		uiSearchEditText.setOnClickListener(this);
 		uiSearchButton.setOnClickListener(this);
@@ -69,11 +66,11 @@ public class SelectCountryFragment extends Fragment implements OnItemClickListen
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		if (parent == uiPopularCityListView) {
-			CityDTO cityDTO = (CityDTO)parent.getItemAtPosition(position);
-			String cityQueryString = cityDTO.getName() + ", " + cityDTO.getSys().getCountry();
-			requestWeatherInformation(cityQueryString);
-		}
+//		if (parent == uiPopularCityListView) {
+//			CityDTO cityDTO = (CityDTO)parent.getItemAtPosition(position);
+//			String cityQueryString = cityDTO.getName() + ", " + cityDTO.getSys().getCountry();
+//			requestWeatherInformation(cityQueryString);
+//		}
 	}
 
 	@Override

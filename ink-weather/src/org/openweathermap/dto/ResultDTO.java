@@ -10,18 +10,11 @@ import org.openweathermap.dto.base.IDTO;
  * @author samkirton
  */
 public class ResultDTO implements IDTO {
-	private String mMessage;
 	private String mCod;
+	private String mMessage;
 	private int mCount;
-	private CityDTO[] mCityList;
-	
-	public String getMessage() {
-		return mMessage;
-	}
-	
-	public void setMessage(String newVal) {
-		mMessage = newVal;
-	}
+	private CityDTO mCity;
+	private DayDTO[] mDayList;
 	
 	public String getCod() {
 		return mCod;
@@ -29,6 +22,14 @@ public class ResultDTO implements IDTO {
 	
 	public void setCod(String newVal) {
 		mCod = newVal;
+	}
+	
+	public String getMessage() {
+		return mMessage;
+	}
+	
+	public void setMessage(String newVal) {
+		mMessage = newVal;
 	}
 	
 	public int getCount() {
@@ -39,12 +40,20 @@ public class ResultDTO implements IDTO {
 		mCount = newVal;
 	}
 	
-	public CityDTO[] getCityList() {
-		return mCityList;
+	public CityDTO getCity() {
+		return mCity;
 	}
 	
-	public void setCityList(CityDTO[] newVal) {
-		mCityList = newVal;
+	public void setCity(CityDTO newVal) {
+		mCity = newVal;
+	}
+	
+	public DayDTO[] getDay() {
+		return mDayList;
+	}
+	
+	public void setDay(DayDTO[] newVal) {
+		mDayList = newVal;
 	}
 	
 	public ResultDTO() { }
@@ -55,16 +64,22 @@ public class ResultDTO implements IDTO {
 	
 	@Override
 	public void fromJson(JSONObject jsonObject) throws JSONException {
-		mMessage = jsonObject.has("message") ? jsonObject.getString("message") : null;
 		mCod = jsonObject.has("cod") ? jsonObject.getString("cod") : null;
-		mCount = jsonObject.has("count") ? jsonObject.getInt("count") : -1;
+		mMessage = jsonObject.has("message") ? jsonObject.getString("message") : null;
+		mCount = jsonObject.has("cnt") ? jsonObject.getInt("cnt") : -1;
+		
+		if (jsonObject.has("city")) {
+			JSONObject coordJSONObject = jsonObject.getJSONObject("city");
+			CityDTO cityDTO = new CityDTO(coordJSONObject);
+			mCity = cityDTO;
+		}
 		
 		if (jsonObject.has("list")) {
-			JSONArray jsonArrayCities = new JSONArray(jsonObject.getString("list"));
-			mCityList = new CityDTO[jsonArrayCities.length()];
-			for (int i = 0; i < jsonArrayCities.length(); i++) {
-				CityDTO cityDTO = new CityDTO(jsonArrayCities.getJSONObject(i));
-				this.mCityList[i] = cityDTO;
+			JSONArray jsonArrayDay = new JSONArray(jsonObject.getString("list"));
+			mDayList = new DayDTO[jsonArrayDay.length()];
+			for (int i = 0; i < jsonArrayDay.length(); i++) {
+				DayDTO dayDTO = new DayDTO(jsonArrayDay.getJSONObject(i));
+				this.mDayList[i] = dayDTO;
 			}
 		}
 	}
