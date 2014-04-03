@@ -2,16 +2,18 @@ package org.openweathermap.activity;
 
 import org.openweather.R;
 import org.openweathermap.activity.base.BaseActivity;
+import org.openweathermap.adapter.ForecastAdapter;
+import org.openweathermap.dto.CityDTO;
+import org.openweathermap.dto.DayDTO;
 import org.openweathermap.dto.ResultDTO;
 import org.openweathermap.dto.base.IDTO;
 import org.openweathermap.fragment.ModalDialogFragment;
 import org.openweathermap.utils.RESTProvider;
-import org.openweathermap.view.WeatherDataView;
 import org.openweathermap.volley.callback.VolleyResponseCallback;
-import org.openweathermap.volley.provider.VolleyImageLoader;
 import org.openweathermap.volley.provider.VolleyRequest;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
@@ -21,7 +23,6 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.NetworkImageView;
 
 /**
  * An activity that loads the current weather details from openweathermap.org 
@@ -31,9 +32,20 @@ import com.android.volley.toolbox.NetworkImageView;
  * @author samkirton
  */
 public class MainActivity extends BaseActivity implements OnClickListener, VolleyResponseCallback {
-	private WeatherDataView uiWeatherDataView;
-	private NetworkImageView uiNetworkImageView;
 	private TextView uiSelectNewCityTextView;
+	private ViewPager uiViewPager;
+	
+	private CityDTO mCityDTO;
+	private DayDTO[] mDayDTOArray;
+	private ForecastAdapter mForecastAdapter;
+	
+	public CityDTO getCityDTO() {
+		return mCityDTO;
+	}
+	
+	public DayDTO[] getDayDTOArray() {
+		return mDayDTOArray;
+	}
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +53,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
         setContentView(R.layout.activity_main);
         super.useNavigationDrawer();
 
-        uiWeatherDataView = (WeatherDataView)findViewById(R.id.activity_main_weather_data_view);
-        uiNetworkImageView = uiWeatherDataView.getNetworkImageView();
-        uiSelectNewCityTextView = (TextView)findViewById(R.id.activity_main_select_new_city);
+        uiSelectNewCityTextView = (TextView)findViewById(R.id.activity_main_select_new_city);   
+        uiViewPager = (ViewPager)findViewById(R.id.activity_main_forecast_pager_viewpager);
         
         uiSelectNewCityTextView.setOnClickListener(this);
         
@@ -79,27 +90,17 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 		closeDialog();
 		
 		if (resultDTO.getDay() != null && resultDTO.getDay().length > 0) {
-			uiWeatherDataView.init(resultDTO.getDay()[0], resultDTO.getCity());
-			requestWeatherConditionIcon(resultDTO.getDay()[0].getWeatherList()[0].getIcon());
+			mCityDTO = resultDTO.getCity();
+			mDayDTOArray = resultDTO.getDay();
+			
+			mForecastAdapter = new ForecastAdapter(getSupportFragmentManager(), resultDTO);
+			uiViewPager.setAdapter(mForecastAdapter);
 		} else {
 			showDialog(
 				getResources().getString(R.string.activity_main_could_not_find_city),
 				ModalDialogFragment.BUTTON_TYPE_OK
 			);
 		}
-	}
-	
-	/**
-	 * Download the weather condition icon
-	 */
-	private void requestWeatherConditionIcon(String iconCode) {
-		String iconUrl = RESTProvider.getWeatherConditionIcon(iconCode, getBaseContext());
-		VolleyImageLoader volleyImageLoader = new VolleyImageLoader(iconUrl);
-		
-		uiNetworkImageView.setImageUrl(
-			volleyImageLoader.getUrl(),
-			volleyImageLoader.getImageLoader()
-		);
 	}
 	
 	/**
@@ -141,7 +142,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	
 	@Override
 	protected View getContentLayout() {
-		return findViewById(R.id.main_activity_content_layout);
+		return findViewById(R.id.activity_main_content_layout);
 	}
 		
 	@Override

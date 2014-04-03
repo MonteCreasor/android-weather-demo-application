@@ -45,8 +45,8 @@ public class ModalDialogFragment extends DialogFragment implements OnClickListen
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.activity_dialog, container, false);
-		uiOkButton = (Button)view.findViewById(R.id.activity_dialog_ok_button);
+		View view = inflater.inflate(R.layout.fragment_modal_dialog, container, false);
+		uiOkButton = (Button)view.findViewById(R.id.fragment_dialog_ok_button);
 		uiActivityDialogTextView = (TextView)view.findViewById(R.id.activity_dialog_textview);
 		return view;
 	}

@@ -44,5 +44,13 @@
 		<item name="android:textColor">@color/fragment_select_country_heading_foreground</item>
 		<item name="android:textStyle">bold</item>
     </style>
+    
+    <style name="ViewPager">
+		<item name="android:background">@color/transparent</item>
+		<item name="android:cacheColorHint">@color/transparent</item>
+		<item name="android:scrollbars">none</item>
+		<item name="android:fadingEdge">none</item>
+		<item name="android:overScrollMode">never</item>
+	</style>
 
 </resources>

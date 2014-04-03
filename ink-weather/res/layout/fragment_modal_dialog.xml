@@ -17,13 +17,13 @@
 		    android:id="@+id/activity_dialog_textview"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		   	android:textColor="@color/activity_dialog_text_foreground"
+		   	android:textColor="@color/fragment_dialog_text_foreground"
 		   	android:textStyle="bold"
 		   	android:gravity="center_horizontal"
 		   	android:lineSpacingExtra="@dimen/activity_default_padding_minor"/>
 		
         <Button 
-            android:id="@+id/activity_dialog_ok_button"
+            android:id="@+id/fragment_dialog_ok_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/activity_dialog_ok"

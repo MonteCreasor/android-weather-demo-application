@@ -2,23 +2,32 @@
 
     <color name="transparent">#00000000</color>
     
+    <!-- activity_main -->
     <color name="activity_main_background">#222222</color>
     <color name="activity_main_foreground">#333333</color>
     <color name="activity_main_select_new_city_foreground">#EEEEEE</color>
     
+    <!-- fragment_select_country -->
     <color name="fragment_select_country_background">#111111</color>
     <color name="fragment_select_country_heading_background">#f7d118</color>
    	<color name="fragment_select_country_heading_foreground">#333333</color>
+   	
+   	<!-- fragment_forecast -->
+   	<color name="fragment_forecast_background">#EEEEEE</color>
     
-     <color name="activity_dialog_text_foreground">#333333</color>
+   	<!-- fragment_dialog -->
+    <color name="fragment_dialog_text_foreground">#333333</color>
     
+    <!-- button -->
     <color name="button_foreground">#FFFFFF</color>
     <color name="button_background">#333333</color>
     
+    <!-- view_weather_data -->
     <color name="view_weather_data_background">#EEEEEE</color>
     <color name="view_weather_data_city_header_background">#EEEEEE</color>
     <color name="view_weather_data_city_header_stroke">#333333</color>
     
+    <!-- view_city_list -->
  	<color name="view_city_list_item_stroke">#222222</color>
  	<color name="view_city_list_item_foreground">#FFFFFF</color>
 

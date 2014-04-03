@@ -5,29 +5,44 @@
     android:layout_height="match_parent">
 
 	<RelativeLayout
-	    android:id="@+id/main_activity_content_layout"
+	    android:id="@+id/activity_main_content_layout"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:background="@color/activity_main_background">
 	 
-		<org.openweathermap.view.WeatherDataView
-		    android:id="@+id/activity_main_weather_data_view"
-		    android:layout_width="wrap_content"
-			android:layout_height="wrap_content" 
-			android:layout_centerHorizontal="true"
-			android:layout_centerVertical="true"/>
-		
-		<TextView
-			android:id="@+id/activity_main_select_new_city"
+	    <LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textSize="@dimen/activity_main_select_new_city_text"
-			android:textStyle="bold"
-			android:textColor="@color/activity_main_select_new_city_foreground"
-			android:layout_marginBottom="@dimen/activity_main_select_new_city_margin"
-			android:text="@string/activity_main_select_new_city"
 			android:layout_centerHorizontal="true"
-			android:layout_alignParentBottom="true"/>
+			android:layout_centerVertical="true"
+			android:orientation="vertical"
+			android:gravity="center_horizontal">
+		    
+			<TextView
+				android:id="@+id/activity_main_select_new_city"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="@dimen/activity_main_select_new_city_text"
+				android:textStyle="bold"
+				android:textColor="@color/activity_main_select_new_city_foreground"
+				android:layout_marginBottom="@dimen/activity_main_select_new_city_margin"
+				android:text="@string/activity_main_select_new_city"/>
+	        
+			<android.support.v4.view.ViewPager
+				android:id="@+id/activity_main_forecast_pager_viewpager"
+				android:layout_width="@dimen/activity_main_viewpager_width"
+				android:layout_height="@dimen/activity_main_viewpager_height"
+				style="@style/ViewPager"/>
+			
+			<LinearLayout
+			    android:id="@+id/activity_main_forecast_pager_indicator_container"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginTop="@dimen/activity_main_forecast_pager_margin"
+			    android:layout_marginBottom="@dimen/activity_main_forecast_pager_margin"
+			    android:orientation="horizontal"/>
+		
+		</LinearLayout>
 	
 	</RelativeLayout>
 	

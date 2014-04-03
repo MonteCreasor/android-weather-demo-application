@@ -1,25 +1,24 @@
-package org.openweathermap.view;
+package org.openweathermap.fragment;
 
 import org.openweather.R;
+import org.openweathermap.activity.MainActivity;
 import org.openweathermap.dto.CityDTO;
 import org.openweathermap.dto.DayDTO;
+import org.openweathermap.utils.RESTProvider;
 import org.openweathermap.utils.StringHelper;
+import org.openweathermap.view.WeatherDataRowView;
+import org.openweathermap.volley.provider.VolleyImageLoader;
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.animation.AlphaAnimation;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
 
-/**
- * A view to display weather data for a particular city,
- * based on the provided CityDTO
- * @author samkirton
- */
-public class WeatherDataView extends LinearLayout {
+public class ForecastFragment extends Fragment {
 	private TextView uiCityTextView;
 	private TextView uiLongLatTextView;
 	private TextView uiWeatherConditionMainTextView;
@@ -30,31 +29,35 @@ public class WeatherDataView extends LinearLayout {
 	private WeatherDataRowView uiAtmosphericPressureWeatherDataRowView;
 	private WeatherDataRowView uiHumidityRangeWeatherDataRowView;
 	
-	/**
-	 * @return	The NetworkImageView is exposed so that the consuming
-	 * activity can run a volley request to populate the view with 
-	 * an image downloaded from the network
-	 */
-	public NetworkImageView getNetworkImageView() {
-		return uiNetworkImageView;
+	private int mDataPosition;
+	
+	public static final String ARG_DATA_POSITION = "ARG_DATA_POSITION";
+	
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_forecast, container, false);
+		
+		uiCityTextView = (TextView)view.findViewById(R.id.fragment_forecast_city);
+		uiLongLatTextView = (TextView)view.findViewById(R.id.fragment_forecast_lng_lat);
+		uiWeatherConditionMainTextView = (TextView)view.findViewById(R.id.fragment_forecast_weather_conditions_main);
+		uiWeatherConditionDescriptionTextView = (TextView)view.findViewById(R.id.fragment_forecast_weather_conditions_description);
+		uiTemperatureTextView = (TextView)view.findViewById(R.id.fragment_forecast_temperature);
+		uiNetworkImageView = (NetworkImageView)view.findViewById(R.id.fragment_forecast_weather_conditions_icon);
+		uiTemperatureRangeWeatherDataRowView = (WeatherDataRowView)view.findViewById(R.id.fragment_forecast_temperature_range_row);
+		uiAtmosphericPressureWeatherDataRowView = (WeatherDataRowView)view.findViewById(R.id.fragment_forecast_atmospheric_pressure_row);
+		uiHumidityRangeWeatherDataRowView = (WeatherDataRowView)view.findViewById(R.id.fragment_forecast_humidity_row);
+		
+		return view;
 	}
 	
-	public WeatherDataView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		LayoutInflater layoutInflater = LayoutInflater.from(context);
-		layoutInflater.inflate(R.layout.view_weather_data, this, true);
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		mDataPosition = getArguments().getInt(ARG_DATA_POSITION);
 		
-		uiCityTextView = (TextView)findViewById(R.id.view_weather_data_city);
-		uiLongLatTextView = (TextView)findViewById(R.id.view_weather_data_lng_lat);
-		uiWeatherConditionMainTextView = (TextView)findViewById(R.id.view_weather_data_weather_conditions_main);
-		uiWeatherConditionDescriptionTextView = (TextView)findViewById(R.id.view_weather_data_weather_conditions_description);
-		uiTemperatureTextView = (TextView)findViewById(R.id.view_weather_data_temperature);
-		uiNetworkImageView = (NetworkImageView)findViewById(R.id.view_weather_data_weather_conditions_icon);
-		uiTemperatureRangeWeatherDataRowView = (WeatherDataRowView)findViewById(R.id.view_weather_data_temperature_range_row);
-		uiAtmosphericPressureWeatherDataRowView = (WeatherDataRowView)findViewById(R.id.view_weather_data_atmospheric_pressure_row);
-		uiHumidityRangeWeatherDataRowView = (WeatherDataRowView)findViewById(R.id.view_weather_data_humidity_row);
-		
-		this.setVisibility(GONE);
+		DayDTO dayDTO = ((MainActivity)getActivity()).getDayDTOArray()[mDataPosition];
+		CityDTO cityDTO = ((MainActivity)getActivity()).getCityDTO();
+		init(dayDTO,cityDTO);
+		requestWeatherConditionIcon(dayDTO.getWeatherList()[0].getIcon());
 	}
 	
 	/**
@@ -66,8 +69,6 @@ public class WeatherDataView extends LinearLayout {
 		double longitude = cityDTO.getCoord().getLon();
 		String coords = "(" + String.valueOf(latitude) + "," + String.valueOf(longitude) + ")";
 		
-		//TODO: The API returns a collection of weather conditions, for this example
-		// the application assumes it always returns at least 1. This is dangerous assumption.
 		String mainCondition = dayDTO.getWeatherList()[0].getMain();
 		String conditionDescription = "(" + dayDTO.getWeatherList()[0].getDescription() + ")";
 		
@@ -92,18 +93,19 @@ public class WeatherDataView extends LinearLayout {
 		
 		uiHumidityRangeWeatherDataRowView.setTitle(getResources().getString(R.string.view_weather_data_row_humidity));
 		uiHumidityRangeWeatherDataRowView.setValue(humidity);
-		
-		showView();
 	}
 	
 	/**
-	 * Fade the layout in
+	 * Download the weather condition icon
+	 * @param	iconCode	The weather condition icon to download
 	 */
-	public void showView() {
-		AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
-		animation.setDuration(1500);
-		animation.setRepeatCount(0);
-		this.startAnimation(animation);
-		this.setVisibility(VISIBLE);
+	private void requestWeatherConditionIcon(String iconCode) {
+		String iconUrl = RESTProvider.getWeatherConditionIcon(iconCode, getActivity());
+		VolleyImageLoader volleyImageLoader = new VolleyImageLoader(iconUrl);
+		
+		uiNetworkImageView.setImageUrl(
+			volleyImageLoader.getUrl(),
+			volleyImageLoader.getImageLoader()
+		);
 	}
 }
