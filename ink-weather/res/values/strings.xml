@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">INK Weather</string>
+    <string name="app_name">City weather</string>
     
     <string name="rest_weather_condition_icon">http://openweathermap.org/img/w/%1$s</string>
     <string name="rest_weather">http://api.openweathermap.org/data/2.5/find?q=%1$s&amp;mode=json&amp;units=metric</string>

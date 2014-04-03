@@ -90,17 +90,17 @@
    	
   	</LinearLayout>
    		   		  
-    <com.ink.weather.view.WeatherDataRowView 
+    <org.openweathermap.view.WeatherDataRowView 
         android:id="@+id/view_weather_data_temperature_range_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     
-    <com.ink.weather.view.WeatherDataRowView 
+    <org.openweathermap.view.WeatherDataRowView 
         android:id="@+id/view_weather_data_atmospheric_pressure_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     
-	<com.ink.weather.view.WeatherDataRowView 
+	<org.openweathermap.view.WeatherDataRowView 
         android:id="@+id/view_weather_data_humidity_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

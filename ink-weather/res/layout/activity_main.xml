@@ -10,7 +10,7 @@
 	    android:layout_height="match_parent"
 	    android:background="@color/activity_main_background">
 	 
-		<com.ink.weather.view.WeatherDataView
+		<org.openweathermap.view.WeatherDataView
 		    android:id="@+id/activity_main_weather_data_view"
 		    android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
@@ -32,7 +32,7 @@
 	</RelativeLayout>
 	
 	<fragment
-	    android:name="com.ink.weather.fragment.SelectCountryFragment"
+	    android:name="org.openweathermap.fragment.SelectCountryFragment"
 	    android:id="@+id/activity_main_navigation_fragment"
 	    android:layout_gravity="left"
 		style="@style/FragmentDrawerLayout"/>
