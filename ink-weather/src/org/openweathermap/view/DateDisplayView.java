@@ -18,6 +18,12 @@ public class DateDisplayView extends LinearLayout {
 	private TextView uiDayOfMonthTextView;
 	private TextView uiMonthTextView;
 	
+	private int mPosition;
+	
+	public int getPosition() {
+		return mPosition;
+	}
+	
 	public DateDisplayView(Context context) {
 		super(context);
 		LayoutInflater layoutInflater = LayoutInflater.from(context);
@@ -31,8 +37,10 @@ public class DateDisplayView extends LinearLayout {
 	/**
 	 * Build the view based on the current timestamp
 	 * @param	timestamp	Determines the date values
+	 * @param	position	Saves a reference of the position in the ViewPager that the view relates to
 	 */
-	public void init(long timestamp) {
+	public void init(long timestamp, int position) {
+		mPosition = position;
 		String dayOfWeek = DateHelper.getDayOfWeek(timestamp);
 		String dayOfMonth = DateHelper.getDayOfMonth(timestamp);
 		String month = DateHelper.getMonth(timestamp);

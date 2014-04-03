@@ -10,6 +10,7 @@ import org.openweathermap.dto.base.IDTO;
 import org.openweathermap.fragment.ModalDialogFragment;
 import org.openweathermap.utils.RESTProvider;
 import org.openweathermap.view.ViewPagerIndicatorView;
+import org.openweathermap.view.ViewPagerIndicatorView.PagerPositionCallback;
 import org.openweathermap.volley.callback.VolleyResponseCallback;
 import org.openweathermap.volley.provider.VolleyRequest;
 
@@ -32,7 +33,7 @@ import com.android.volley.VolleyError;
  * opens the navigation drawer.
  * @author samkirton
  */
-public class MainActivity extends BaseActivity implements OnClickListener, VolleyResponseCallback {
+public class MainActivity extends BaseActivity implements OnClickListener, VolleyResponseCallback, PagerPositionCallback {
 	private TextView uiSelectNewCityTextView;
 	private ViewPager uiViewPager;
 	private ViewPagerIndicatorView uiViewPagerIndicatorView;
@@ -98,7 +99,9 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 			
 			mForecastAdapter = new ForecastAdapter(getSupportFragmentManager(), resultDTO);
 			uiViewPager.setAdapter(mForecastAdapter);
+			
 			uiViewPagerIndicatorView.init(mDayDTOArray);
+			uiViewPagerIndicatorView.setPagerPositionCallback(this);
 			uiViewPager.setOnPageChangeListener(uiViewPagerIndicatorView);
 		} else {
 			showDialog(
@@ -113,6 +116,18 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	 */
 	private void selectNewCity_Click() {
 		getNavigationDrawer().openDrawer(Gravity.LEFT);
+	}
+	
+	@Override
+	public void onClick(View v) {
+		if (v == uiSelectNewCityTextView) {
+			selectNewCity_Click();
+		}
+	}
+	
+	@Override
+	public void onSetPosition(int position) {
+		uiViewPager.setCurrentItem(position);
 	}
 	
 	@Override
@@ -135,13 +150,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 				getResources().getString(R.string.activity_main_could_not_find_city),
 				ModalDialogFragment.BUTTON_TYPE_OK
 			);
-		}
-	}
-	
-	@Override
-	public void onClick(View v) {
-		if (v == uiSelectNewCityTextView) {
-			selectNewCity_Click();
 		}
 	}
 	
