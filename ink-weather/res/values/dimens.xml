@@ -18,7 +18,7 @@
 	<dimen name="fragment_forecast_weather_condition_textsize">22sp</dimen>
 	<dimen name="fragment_forecast_weather_condition_description_textsize">16sp</dimen>
 	<dimen name="fragment_forecast_temp_textsize">22sp</dimen>
-	<dimen name="fragment_forecast_border_height">2dp</dimen>
+	<dimen name="fragment_forecast_border_height">1dp</dimen>
 	<dimen name="fragment_forecast_border_margin">3dp</dimen>
 	
 	<!-- button -->
@@ -27,7 +27,8 @@
 	<!-- view_weather_data_row -->
 	<dimen name="view_weather_data_row_textsize">16sp</dimen>
 	
-	<!-- view_forecast_pager -->
-	<dimen name="view_forecast_pager_indicator_radius">3dp</dimen>
+	<!-- view_date_display -->
+	<dimen name="view_date_display_num_textsize">22sp</dimen>
+	<dimen name="view_date_display_textsize">16sp</dimen>
 
 </resources>

@@ -9,6 +9,7 @@ import org.openweathermap.dto.ResultDTO;
 import org.openweathermap.dto.base.IDTO;
 import org.openweathermap.fragment.ModalDialogFragment;
 import org.openweathermap.utils.RESTProvider;
+import org.openweathermap.view.ViewPagerIndicatorView;
 import org.openweathermap.volley.callback.VolleyResponseCallback;
 import org.openweathermap.volley.provider.VolleyRequest;
 
@@ -34,6 +35,7 @@ import com.android.volley.VolleyError;
 public class MainActivity extends BaseActivity implements OnClickListener, VolleyResponseCallback {
 	private TextView uiSelectNewCityTextView;
 	private ViewPager uiViewPager;
+	private ViewPagerIndicatorView uiViewPagerIndicatorView;
 	
 	private CityDTO mCityDTO;
 	private DayDTO[] mDayDTOArray;
@@ -55,6 +57,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 
         uiSelectNewCityTextView = (TextView)findViewById(R.id.activity_main_select_new_city);   
         uiViewPager = (ViewPager)findViewById(R.id.activity_main_forecast_pager_viewpager);
+        uiViewPagerIndicatorView = (ViewPagerIndicatorView)findViewById(R.id.activity_main_forecast_view_pager_indicator_view);
         
         uiSelectNewCityTextView.setOnClickListener(this);
         
@@ -95,6 +98,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 			
 			mForecastAdapter = new ForecastAdapter(getSupportFragmentManager(), resultDTO);
 			uiViewPager.setAdapter(mForecastAdapter);
+			uiViewPagerIndicatorView.init(mDayDTOArray);
+			uiViewPager.setOnPageChangeListener(uiViewPagerIndicatorView);
 		} else {
 			showDialog(
 				getResources().getString(R.string.activity_main_could_not_find_city),

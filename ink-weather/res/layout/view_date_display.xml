@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="@dimen/activity_default_padding_minor">
+	
+	<TextView
+	    android:id="@+id/view_date_display_day_of_week"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"   	    
+		android:textColor="@color/view_date_display_foreground"
+		android:textStyle="bold"
+		android:textSize="@dimen/view_date_display_textsize"
+		android:gravity="center_horizontal"/>
+	
+	<TextView
+	    android:id="@+id/view_date_display_day_of_month"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"   	    
+		android:textColor="@color/view_date_display_foreground"
+		android:textStyle="bold"
+		android:textSize="@dimen/view_date_display_num_textsize"
+		android:gravity="center_horizontal"/>
+	
+	<TextView
+	    android:id="@+id/view_date_display_month"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"   	    
+		android:textColor="@color/view_date_display_foreground"
+		android:textStyle="bold"
+		android:textSize="@dimen/view_date_display_textsize"
+		android:gravity="center_horizontal"/>
+  	    
+</LinearLayout>

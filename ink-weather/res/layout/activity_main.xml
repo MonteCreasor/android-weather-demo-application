@@ -34,13 +34,11 @@
 				android:layout_height="@dimen/activity_main_viewpager_height"
 				style="@style/ViewPager"/>
 			
-			<LinearLayout
-			    android:id="@+id/activity_main_forecast_pager_indicator_container"
+			<org.openweathermap.view.ViewPagerIndicatorView
+			    android:id="@+id/activity_main_forecast_view_pager_indicator_view"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:layout_marginTop="@dimen/activity_main_forecast_pager_margin"
-			    android:layout_marginBottom="@dimen/activity_main_forecast_pager_margin"
-			    android:orientation="horizontal"/>
+			    android:layout_marginTop="@dimen/activity_default_padding"/>
 		
 		</LinearLayout>
 	

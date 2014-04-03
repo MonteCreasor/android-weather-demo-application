@@ -31,5 +31,10 @@
     <!-- view_city_list -->
  	<color name="view_city_list_item_stroke">#222222</color>
  	<color name="view_city_list_item_foreground">#FFFFFF</color>
+ 	
+ 	<!-- view_date_display -->
+	<color name="view_date_display_foreground">#FFFFFF</color>
+	<color name="view_date_display_select_foreground">#333333</color>
+	<color name="view_date_display_background">#EEEEEE</color>
 
 </resources>
