@@ -1,0 +1,19 @@
+CREATE TABLE Weather (
+	pid integer PRIMARY KEY NOT NULL,
+	rawId varchar NOT NULL,
+	description varchar NOT NULL,
+	descriptionDetailed varchar NOT NULL,
+	icon blob NOT NULL,
+	timestamp long NOT NULL,
+	tmpDay real NOT NULL,
+	tmpMin real NOT NULL,
+	tmpMax real NOT NULL,
+	tmpNight real NULL,
+	tmpEve real NULL,
+	tmpMorn real NULL,
+	pressure real NOT NULL,
+	humidity real NOT NULL,
+	windSpeed real NOT NULL,
+	windDegrees real NOT NULL,
+	cloudCoverage real NOT NULL
+);

@@ -3,7 +3,6 @@
     <!-- activity -->
     <dimen name="activity_default_padding">10dp</dimen>
     <dimen name="activity_default_padding_minor">5dp</dimen>
-	<dimen name="activity_textSize">12sp</dimen>
 	<dimen name="activity_main_viewpager_width">300dp</dimen>
 	<dimen name="activity_main_viewpager_height">230dp</dimen>
 	
@@ -22,6 +21,7 @@
 	<dimen name="fragment_forecast_border_margin">3dp</dimen>
 	
 	<!-- button -->
+	<dimen name="button_textsize">16dp</dimen>
 	<dimen name="button_padding">5dp</dimen>
 
 	<!-- view_weather_data_row -->

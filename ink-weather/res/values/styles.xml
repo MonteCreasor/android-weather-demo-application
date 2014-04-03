@@ -26,7 +26,7 @@
     <style name="Button">
 		<item name="android:background">@drawable/background_button</item>
 	    <item name="android:textColor">@color/button_foreground</item>
-	    <item name="android:textSize">@dimen/activity_textSize</item>
+	    <item name="android:textSize">@dimen/button_textsize</item>
 	    <item name="android:padding">@dimen/button_padding</item>
     </style>
     
