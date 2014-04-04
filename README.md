@@ -8,6 +8,9 @@ tests: /ink-weather/tests/
 
 dependancies: /ink-weather/lib/
 
+The application can be downloaded on google play at:
+https://play.google.com/store/apps/details?id=com.ink.weather
+
 # About
 This demo application uses the openweathermap.org API to query and return weather details for world cities. It utilises the Volley networking
 library for retrieving JSON data and images. Instead of using JSONObjects directly in the application code, the response from the web service
@@ -63,3 +66,7 @@ discrepancy here would introduce critical bugs.
 # TODO:
 - More Android Framework specific test coverage (activities, fragments, views intents)
 - Build the application with Gradle 
+- Implement a "current weather option as well as the 7 day forecast
+- The temp displayed in the 7 day forecast should be the average of that day
+- Create a settings screen where the user can switch between degrees and fahrenheit
+- Create a widget for the 7 day and current views 
