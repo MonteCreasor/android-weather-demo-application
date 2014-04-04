@@ -1,10 +1,10 @@
 package org.openweathermap.sql.model;
 
+import com.app.sqlite.base.BaseModel;
+
 import java.util.HashMap;
 
 import android.content.ContentValues;
-
-import com.app.sqlite.base.BaseModel;
 
 public class WeatherModel extends BaseModel {
 	private int pid;
@@ -67,7 +67,6 @@ public class WeatherModel extends BaseModel {
 	public void setIconId(int newVal) {
 		iconId = newVal;
 	}
-
 	public String getDescription() {
 		return description;
 	}

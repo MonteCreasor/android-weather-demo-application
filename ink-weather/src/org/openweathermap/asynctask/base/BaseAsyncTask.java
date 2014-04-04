@@ -55,7 +55,7 @@ public abstract class BaseAsyncTask extends AsyncTask<IParam, Void, BaseResponse
 	 * BaseContext param
 	 * @param	baseContext	The BaseContext to use as params
 	 */
-	public void execute(IParam param) {
+	public void runTask(IParam param) {
 		IParam[] params = new IParam[1];
 		params[0] = param;
 		this.execute(params);

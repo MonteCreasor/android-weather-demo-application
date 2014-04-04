@@ -1,10 +1,10 @@
 package org.openweathermap.sql.model;
 
+import com.app.sqlite.base.BaseModel;
+
 import java.util.HashMap;
 
 import android.content.ContentValues;
-
-import com.app.sqlite.base.BaseModel;
 
 public class CityModel extends BaseModel {
 	private int pid;
@@ -12,12 +12,14 @@ public class CityModel extends BaseModel {
 	private String country;
 	private String latitude;
 	private String longitude;
+	private long lastViewedTimestamp;
 
 	private static final String COLUMN_PID = "pid";
 	private static final String COLUMN_NAME = "name";
 	private static final String COLUMN_COUNTRY = "country";
 	private static final String COLUMN_LATITUDE = "latitude";
 	private static final String COLUMN_LONGITUDE = "longitude";
+	private static final String COLUMN_LASTVIEWEDTIMESTAMP = "lastViewedTimestamp";
 
 	// The SQL provider uses reflection to retrieve the table name from this variable
 	public static final String TABLE_NAME = "City";
@@ -29,7 +31,6 @@ public class CityModel extends BaseModel {
 	public void setPid(int newVal) {
 		pid = newVal;
 	}
-
 	public String getName() {
 		return name;
 	}
@@ -58,6 +59,13 @@ public class CityModel extends BaseModel {
 	public void setLongitude(String newVal) {
 		longitude = newVal;
 	}
+	public long getLastViewedTimestamp() {
+		return lastViewedTimestamp;
+	}
+
+	public void setLastViewedTimestamp(long newVal) {
+		lastViewedTimestamp = newVal;
+	}
 
 	@Override
 	public HashMap<String,Integer> getModelColumnTypeMap() {
@@ -67,6 +75,7 @@ public class CityModel extends BaseModel {
 		modelColumns.put(COLUMN_COUNTRY, BaseModel.FIELD_STRING);
 		modelColumns.put(COLUMN_LATITUDE, BaseModel.FIELD_STRING);
 		modelColumns.put(COLUMN_LONGITUDE, BaseModel.FIELD_STRING);
+		modelColumns.put(COLUMN_LASTVIEWEDTIMESTAMP, BaseModel.FIELD_LONG);
 		return modelColumns;
 	}
 
@@ -77,6 +86,7 @@ public class CityModel extends BaseModel {
 		contentValues.put(COLUMN_COUNTRY, getCountry());
 		contentValues.put(COLUMN_LATITUDE, getLatitude());
 		contentValues.put(COLUMN_LONGITUDE, getLongitude());
+		contentValues.put(COLUMN_LASTVIEWEDTIMESTAMP, getLastViewedTimestamp());
 		return contentValues;
 	}
 }

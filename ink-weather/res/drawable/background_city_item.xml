@@ -11,7 +11,7 @@
 	    android:right="0dp"
 	    android:top="0dp">
 		<shape>
-			<solid android:color="@color/fragment_select_country_background" />
+			<solid android:color="#FFFFFF" />
 		</shape>
 	</item>
 </layer-list>

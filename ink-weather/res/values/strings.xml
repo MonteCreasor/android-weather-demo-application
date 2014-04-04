@@ -21,6 +21,8 @@
     
     <string name="fragment_select_country_popular_cities">Popular cities</string>
     <string name="fragment_select_country_search_for_city">Search for city</string>
-    <string name="fragment_select_country_search">e.g Berlin, Germany&#8230;</string>
+    <string name="fragment_select_country_search">Search Open Weather Map</string>
+    <string name="fragment_select_country_search_hint">e.g New York, USA&#8230;</string>
+    <string name="fragment_select_country_previous_cities">Previous searches</string>
 
 </resources>

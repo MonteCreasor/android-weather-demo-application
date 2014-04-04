@@ -2,11 +2,13 @@ package org.openweathermap.activity;
 
 import org.openweathermap.activity.base.BaseActivity;
 import org.openweathermap.adapter.ForecastAdapter;
+import org.openweathermap.asynctask.GetLastCityAsyncTask;
 import org.openweathermap.asynctask.SaveForecastAsyncTask;
 import org.openweathermap.asynctask.base.BaseAsyncTask;
 import org.openweathermap.asynctask.base.BaseAsyncTask.AsyncCallback;
 import org.openweathermap.asynctask.base.BaseResponse;
 import org.openweathermap.asynctask.param.SaveForecastParam;
+import org.openweathermap.asynctask.response.GetLastCityResponse;
 import org.openweathermap.asynctask.response.SaveForecastResponse;
 import org.openweathermap.dto.ResultDTO;
 import org.openweathermap.dto.base.IDTO;
@@ -49,6 +51,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	private WeatherModel[] mWeatherModelArray;
 	private ForecastAdapter mForecastAdapter;
 	private boolean mHasNoResults;
+	private GetLastCityAsyncTask mGetLastCityAsyncTask;
 	private SaveForecastAsyncTask mSaveForecastAsyncTask;
 	
 	public CityModel getCityModel() {
@@ -72,8 +75,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
         
         uiSelectNewCityTextView.setOnClickListener(this);
         
-		String startingCity = "London, GB";
-		requestWeatherInformation_Start(startingCity);
+		requestWeatherInformation_Start(null);
     }
 
 	/**
@@ -87,10 +89,30 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 		
 		showDialog(getResources().getString(R.string.activity_loading_weather),ModalDialogFragment.BUTTON_TYPE_BLOCKING);
 		
+		if (city != null) {
+			requestWeatherInformationApi(city);
+		} else {
+			// get the last viewed city and query 
+			mGetLastCityAsyncTask = new GetLastCityAsyncTask(this);
+			mGetLastCityAsyncTask.setAsyncCallback(this);
+			mGetLastCityAsyncTask.runTask(null);
+		}
+	}
+	
+	/**
+	 * Request weather information from the API using the CityModel to 
+	 * build the request
+	 * @param	cityModel	The city to request weather information for
+	 */
+	private void requestWeatherInformationApi(String city) {
+		String cityQuery = "London, GB";
+		if (city != null) 
+			cityQuery = city;	
+		
 		VolleyRequest volleyRequest = new VolleyRequest(); 
 		volleyRequest.setVollyResponseCallback(this);
 		volleyRequest.execute(Request.Method.GET, 
-			RESTProvider.getWeatherForecastUrl(city, getBaseContext()),
+			RESTProvider.getWeatherForecastUrl(cityQuery, getBaseContext()),
 			null,
 			ResultDTO.class
 		);
@@ -140,13 +162,21 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	public void onVolleyResponse(IDTO dto) {
 		if (dto instanceof ResultDTO) {
 			ResultDTO resultDTO = (ResultDTO)dto;
-			SaveForecastParam saveForecastParam = new SaveForecastParam();
-			saveForecastParam.setCityDTO(resultDTO.getCity());
-			saveForecastParam.setDayDTOArray(resultDTO.getDay());
 			
-			mSaveForecastAsyncTask = new SaveForecastAsyncTask(this);
-			mSaveForecastAsyncTask.setAsyncCallback(this);
-			mSaveForecastAsyncTask.execute(saveForecastParam);
+			if (resultDTO.getDay() != null && resultDTO.getDay().length > 0) {
+				SaveForecastParam saveForecastParam = new SaveForecastParam();
+				saveForecastParam.setCityDTO(resultDTO.getCity());
+				saveForecastParam.setDayDTOArray(resultDTO.getDay());
+				
+				mSaveForecastAsyncTask = new SaveForecastAsyncTask(this);
+				mSaveForecastAsyncTask.setAsyncCallback(this);
+				mSaveForecastAsyncTask.runTask(saveForecastParam);
+			} else {
+				showDialog(
+					getResources().getString(R.string.activity_main_could_not_find_city),
+					ModalDialogFragment.BUTTON_TYPE_OK
+				);
+			}
 		}
 	}
 
@@ -175,6 +205,15 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 		if (asyncTask == mSaveForecastAsyncTask) {
 			SaveForecastResponse saveForecastResponse = (SaveForecastResponse)response;
 			requestWeatherInformation_Finished(saveForecastResponse);
+		} else if (asyncTask == mGetLastCityAsyncTask) {
+			GetLastCityResponse getLastCityResponse = (GetLastCityResponse)response;
+			
+			CityModel cityModel = getLastCityResponse.getCityModel();
+			String cityQuery = null;
+			if (cityModel != null) 
+				cityQuery = cityModel.getName() + ", " + cityModel.getCountry();
+			
+			requestWeatherInformationApi(cityQuery);
 		}
 	}
 	

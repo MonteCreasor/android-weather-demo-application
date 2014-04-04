@@ -42,7 +42,7 @@ public class ViewPagerFade extends ViewPager implements AnimationListener {
 		super.setAdapter(mPagerAdapter);
 		
 		AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
-		animation.setDuration(1000);
+		animation.setDuration(500);
 		animation.setRepeatCount(0);
 		this.startAnimation(animation);
 		this.setVisibility(VISIBLE);
@@ -53,7 +53,7 @@ public class ViewPagerFade extends ViewPager implements AnimationListener {
 	 */
 	public void hideView() {
 		AlphaAnimation animation = new AlphaAnimation(1.0f, 0.0f);
-		animation.setDuration(1000);
+		animation.setDuration(500);
 		animation.setRepeatCount(0);
 		animation.setAnimationListener(this);
 		this.startAnimation(animation);

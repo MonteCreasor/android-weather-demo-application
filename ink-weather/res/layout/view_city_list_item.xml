@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:textColor="@color/view_city_list_item_foreground"
+    	android:textSize="16sp"
     	android:textStyle="bold"/>
     
    	<TextView
@@ -19,7 +20,7 @@
         android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:textColor="@color/view_city_list_item_foreground"
-   		android:textSize="12sp"
+   		android:textSize="14sp"
    		android:layout_marginTop="@dimen/activity_default_padding_minor"/>
 
 </LinearLayout>

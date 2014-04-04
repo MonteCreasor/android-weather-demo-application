@@ -9,7 +9,7 @@
 	
 	<!-- activity_main -->
 	<dimen name="activity_main_select_new_city_margin">20dp</dimen>
-	<dimen name="activity_main_select_new_city_textsize">16sp</dimen>
+	<dimen name="activity_main_select_new_city_textsize">20sp</dimen>
 	<dimen name="activity_main_forecast_pager_margin">20dp</dimen>
 	<dimen name="activity_main_no_results_textsize">16sp</dimen>
 	<dimen name="activity_main_header_padding">15dp</dimen>

@@ -18,7 +18,7 @@ public class StringHelper {
 	 * @param	longitude	To build the string with
 	 * @return	A user friendly location string based on the provided latitude and longitude
 	 */
-	public static String buildLocationString(double latitude, double longitude) {
-		return "(" + String.valueOf(latitude) + ", " + String.valueOf(longitude) + ")";
+	public static String buildLocationString(String latitude, String longitude) {
+		return "(" + latitude + ", " + longitude + ")";
 	}
 }

@@ -8,37 +8,51 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search for cities"
+        android:text="@string/fragment_select_country_search_for_city"
         style="@style/DrawerLayoutHeader"/>
     
-	<LinearLayout
+    <EditText 
+        android:id="@+id/fragment_select_city_search_edittext"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal">
+		android:inputType="text"
+		android:background="@null"
+		android:textColor="#333333"
+		android:textColorHint="#555555"
+		android:textSize="16sp"
+		android:padding="@dimen/activity_default_padding"
+		android:imeOptions="actionDone"
+		android:hint="@string/fragment_select_country_search_hint"/>
+    
+	<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_select_country_previous_cities"
+        style="@style/DrawerLayoutHeader"/>
 	
-	    <EditText 
-	        android:id="@+id/fragment_select_city_search_edittext"
-			android:layout_width="0dp"
-			android:layout_weight=".7"
-			android:layout_height="wrap_content"
-			android:inputType="text"
-			android:background="@null"
-			android:textColor="#333333"
-			android:textColorHint="#555555"
-			android:textSize="16sp"
-			android:padding="@dimen/activity_default_padding"
-			android:imeOptions="actionDone"
-			android:hint="@string/fragment_select_country_search"/>
-	    
-	    <Button
-	        android:id="@+id/fragment_select_city_search_button"
-			android:layout_width="0dp"
-			android:layout_weight=".3"
-			android:layout_height="wrap_content"
-			android:text="Search"
-			style="@style/Button"
-			android:layout_marginRight="@dimen/activity_default_padding_minor"/>
-	        
-    </LinearLayout>
+	<ListView
+	    android:id="@+id/fragment_select_country_popular_city_list"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    style="@style/DataListView"/>
+	
+	<Button
+	    android:id="@+id/fragment_select_country_popular_city_no_results"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:gravity="center_horizontal"
+	    android:layout_gravity="center_horizontal"
+	    android:text="@string/fragment_select_country_search"
+	    android:layout_margin="@dimen/activity_default_padding"
+	    android:visibility="gone"
+	    style="@style/Button"/>
+	
+	<ProgressBar
+	    android:id="@+id/fragment_select_country_popular_city_loading"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal"
+	    android:gravity="center_horizontal"
+	    android:visibility="gone"/>
     
 </LinearLayout>

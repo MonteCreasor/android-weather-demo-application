@@ -42,7 +42,7 @@
 		<item name="android:padding">@dimen/activity_default_padding</item>
 		<item name="android:background">@color/fragment_select_country_heading_background</item>
 		<item name="android:textColor">@color/fragment_select_country_heading_foreground</item>
-		<item name="android:textSize">16sp</item>
+		<item name="android:textSize">18sp</item>
 		<item name="android:textStyle">bold</item>
     </style>
     
@@ -52,6 +52,14 @@
 		<item name="android:scrollbars">none</item>
 		<item name="android:fadingEdge">none</item>
 		<item name="android:overScrollMode">never</item>
+	</style>
+	
+    <style name="DataListView">
+	    <item name="android:background">@color/transparent</item>
+		<item name="android:cacheColorHint">@color/transparent</item>
+		<item name="android:divider">@color/transparent</item>
+		<item name="android:dividerHeight">1dp</item>
+		<item name="android:scrollbars">none</item>
 	</style>
 
 </resources>

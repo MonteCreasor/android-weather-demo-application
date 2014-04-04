@@ -44,13 +44,24 @@ public class SaveForecastAsyncTask extends BaseAsyncTask {
 			cityModel = buildCityModel(cityDTO);
 			cityPid = WeatherApplication.getInstance().getSQLProvider().insert(cityModel);
 		} else {
-			// clear the forecast for this city
 			cityPid = cityModel.getPid();
+			cityModel.setLastViewedTimestamp(System.currentTimeMillis());
+			
+			// clear the forecast for this city
 			WeatherApplication.getInstance().getSQLProvider().deleteBy(
 				WeatherModel.class, 
 				"cityId", 
 				String.valueOf(cityPid)
 			);
+			
+			//  Update the last viewed timestamp
+			int testUpdate = WeatherApplication.getInstance().getSQLProvider().update(
+				cityModel, 
+				"pid = ?", 
+				new String[] {String.valueOf(cityPid)}
+			);
+			
+			System.out.println("test");
 		}
 		
 		// insert weather the models
@@ -140,6 +151,7 @@ public class SaveForecastAsyncTask extends BaseAsyncTask {
 		cityModel.setCountry(cityDTO.getCountry());
 		cityModel.setLatitude(String.valueOf(cityDTO.getCoord().getLat()));
 		cityModel.setLongitude(String.valueOf(cityDTO.getCoord().getLon()));
+		cityModel.setLastViewedTimestamp(System.currentTimeMillis());
 		return cityModel;
 	}
 	

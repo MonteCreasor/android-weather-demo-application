@@ -1,6 +1,6 @@
 package org.openweathermap.adapter;
 
-import org.openweathermap.dto.CityDTO;
+import org.openweathermap.sql.model.CityModel;
 import org.openweathermap.utils.StringHelper;
 
 import android.content.Context;
@@ -16,11 +16,11 @@ import com.ink.weather.R;
  * An adapter to display a list of City DTO using the view_city_list_item layout resource
  * @author samkirton
  */
-public class CityArrayAdapter extends ArrayAdapter<CityDTO> {
+public class CityAdapter extends ArrayAdapter<CityModel> {
 	private final Context mContext;
-	private final CityDTO[] mValues;
+	private final CityModel[] mValues;
 
-	public CityArrayAdapter(Context context, CityDTO[] values) {
+	public CityAdapter(Context context, CityModel[] values) {
 		super(context, R.layout.view_city_list_item, values);
 		this.mContext = context;
 		this.mValues = values;
@@ -43,14 +43,14 @@ public class CityArrayAdapter extends ArrayAdapter<CityDTO> {
 		}
 	    
 		// get the city name and location coords from the CityDTO
-	    CityDTO cityDTO = mValues[position];
-	    String city = cityDTO.getName() + " (" + cityDTO.getCountry() + ")";
+	    CityModel cityModel = mValues[position];
+	    String displayValue = cityModel.getName() + " (" + cityModel.getCountry() + ")";
 	    String locationCoords = StringHelper.buildLocationString(
-	    	cityDTO.getCoord().getLat(), 
-	    	cityDTO.getCoord().getLon()
+	    	cityModel.getLatitude(),
+	    	cityModel.getLongitude()
 	    );
 	    
-	    viewHolder.uiTitleTextView.setText(city);
+	    viewHolder.uiTitleTextView.setText(displayValue);
 	    viewHolder.uiLocationTextView.setText(locationCoords);
 	    
 	    return convertView;
