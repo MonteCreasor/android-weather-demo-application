@@ -4,12 +4,14 @@
     <dimen name="activity_default_padding">10dp</dimen>
     <dimen name="activity_default_padding_minor">5dp</dimen>
 	<dimen name="activity_main_viewpager_width">300dp</dimen>
-	<dimen name="activity_main_viewpager_height">230dp</dimen>
+	<dimen name="activity_main_viewpager_height">245dp</dimen>
+	<dimen name="activity_corner_radius">3dp</dimen>
 	
 	<!-- activity_main -->
 	<dimen name="activity_main_select_new_city_margin">20dp</dimen>
-	<dimen name="activity_main_select_new_city_text">16sp</dimen>
+	<dimen name="activity_main_select_new_city_textsize">16sp</dimen>
 	<dimen name="activity_main_forecast_pager_margin">20dp</dimen>
+	<dimen name="activity_main_no_results_textsize">16sp</dimen>
 	
 	<!-- fragment_modal_dialog -->
 	<dimen name="fragment_modal_dialog_width">220dp</dimen>
@@ -24,7 +26,7 @@
 	<dimen name="fragment_forecast_border_margin">3dp</dimen>
 	
 	<!-- button -->
-	<dimen name="button_textsize">16dp</dimen>
+	<dimen name="button_textsize">14dp</dimen>
 	<dimen name="button_padding">5dp</dimen>
 
 	<!-- view_weather_data_row -->

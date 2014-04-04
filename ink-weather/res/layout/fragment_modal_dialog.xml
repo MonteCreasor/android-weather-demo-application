@@ -32,7 +32,7 @@
             android:text="@string/activity_dialog_ok"
             android:visibility="gone"
             style="@style/Button"
-            android:paddingBottom="@dimen/activity_default_padding_minor"/>
+            android:layout_marginBottom="@dimen/activity_default_padding_minor"/>
         
     </LinearLayout>
     

@@ -10,17 +10,20 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.LinearLayout;
 
 /**
  * 
  * @author samkirton
  */
-public class ViewPagerIndicatorView extends LinearLayout implements OnPageChangeListener, OnClickListener {
+public class ViewPagerIndicatorView extends LinearLayout implements OnPageChangeListener, OnClickListener, AnimationListener {
 	private DayDTO[] mDayDTOArray;
 	private Context mContext;
 	private ArrayList<DateDisplayView> mDateDisplayViewCollection;
 	private PagerPositionCallback mPagerPositionCallback;
+	private boolean mFirstLoad = true;
 	
 	public interface PagerPositionCallback {
 		public void onSetPosition(int position);
@@ -64,7 +67,12 @@ public class ViewPagerIndicatorView extends LinearLayout implements OnPageChange
 				dateDisplayView.selected();
 		}
 		
-		showView();
+		if (mFirstLoad) {
+			mFirstLoad = false;
+			showView();
+		} else {
+			hideView();
+		}
 	}
 	
 	/**
@@ -72,10 +80,21 @@ public class ViewPagerIndicatorView extends LinearLayout implements OnPageChange
 	 */
 	public void showView() {
 		AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
-		animation.setDuration(1500);
+		animation.setDuration(1000);
 		animation.setRepeatCount(0);
 		this.startAnimation(animation);
 		this.setVisibility(VISIBLE);
+	}
+	
+	/**
+	 * Hides the view and when the animation ends it shows the view
+	 */
+	public void hideView() {
+		AlphaAnimation animation = new AlphaAnimation(1.0f, 0.0f);
+		animation.setDuration(1000);
+		animation.setRepeatCount(0);
+		animation.setAnimationListener(this);
+		this.startAnimation(animation);
 	}
 	
 	@Override
@@ -101,4 +120,15 @@ public class ViewPagerIndicatorView extends LinearLayout implements OnPageChange
 
 	@Override
 	public void onPageScrolled(int arg0, float arg1, int arg2) { }
+
+	@Override
+	public void onAnimationEnd(Animation animation) {
+		showView();
+	}
+
+	@Override
+	public void onAnimationRepeat(Animation animation) { }
+
+	@Override
+	public void onAnimationStart(Animation animation) { }
 }

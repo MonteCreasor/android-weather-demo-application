@@ -37,10 +37,12 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	private TextView uiSelectNewCityTextView;
 	private ViewPager uiViewPager;
 	private ViewPagerIndicatorView uiViewPagerIndicatorView;
+	private TextView uiNoResultsTextView;
 	
 	private CityDTO mCityDTO;
 	private DayDTO[] mDayDTOArray;
 	private ForecastAdapter mForecastAdapter;
+	private boolean mHasNoResults;
 	
 	public CityDTO getCityDTO() {
 		return mCityDTO;
@@ -59,6 +61,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
         uiSelectNewCityTextView = (TextView)findViewById(R.id.activity_main_select_new_city);   
         uiViewPager = (ViewPager)findViewById(R.id.activity_main_forecast_pager_viewpager);
         uiViewPagerIndicatorView = (ViewPagerIndicatorView)findViewById(R.id.activity_main_forecast_view_pager_indicator_view);
+        uiNoResultsTextView = (TextView)findViewById(R.id.activity_main_forecast_no_results);
         
         uiSelectNewCityTextView.setOnClickListener(this);
         
@@ -93,7 +96,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	private void requestWeatherInformation_Finished(ResultDTO resultDTO) {
 		closeDialog();
 		
-		if (resultDTO.getDay() != null && resultDTO.getDay().length > 0) {
+		if (resultDTO.getDay() != null && resultDTO.getDay().length > 0) {	
 			mCityDTO = resultDTO.getCity();
 			mDayDTOArray = resultDTO.getDay();
 			
@@ -103,6 +106,9 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 			uiViewPagerIndicatorView.init(mDayDTOArray);
 			uiViewPagerIndicatorView.setPagerPositionCallback(this);
 			uiViewPager.setOnPageChangeListener(uiViewPagerIndicatorView);
+			
+			if (mHasNoResults)
+				uiNoResultsTextView.setVisibility(View.GONE);
 		} else {
 			showDialog(
 				getResources().getString(R.string.activity_main_could_not_find_city),
@@ -149,6 +155,11 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 				getResources().getString(R.string.activity_main_could_not_find_city),
 				ModalDialogFragment.BUTTON_TYPE_OK
 			);
+		}
+		
+		if (!mHasNoResults) {
+			mHasNoResults = true;
+			uiNoResultsTextView.setVisibility(View.VISIBLE);
 		}
 	}
 	

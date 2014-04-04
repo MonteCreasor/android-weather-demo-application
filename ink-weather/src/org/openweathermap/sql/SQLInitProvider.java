@@ -25,11 +25,11 @@ public class SQLInitProvider extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-//		String cityCacheSchema = ResourceHelper.getFileContentsAsString(mContext, R.raw.city);
-//		String weatherCacheSchema = ResourceHelper.getFileContentsAsString(mContext, R.raw.weather);
-//		
-//		database.execSQL(cityCacheSchema);
-//		database.execSQL(weatherCacheSchema);
+		String cityCacheSchema = ResourceHelper.getFileContentsAsString(mContext, R.raw.city);
+		String weatherCacheSchema = ResourceHelper.getFileContentsAsString(mContext, R.raw.weather);
+		
+		database.execSQL(cityCacheSchema);
+		database.execSQL(weatherCacheSchema);
 	}
 
 	@Override

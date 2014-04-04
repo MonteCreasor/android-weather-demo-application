@@ -1,10 +1,10 @@
 package org.openweathermap.sql.model;
 
-import com.app.sqlite.base.BaseModel;
-
 import java.util.HashMap;
 
 import android.content.ContentValues;
+
+import com.app.sqlite.base.BaseModel;
 
 public class CityModel extends BaseModel {
 	private int pid;

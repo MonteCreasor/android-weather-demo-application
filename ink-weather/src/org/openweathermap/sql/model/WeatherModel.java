@@ -1,13 +1,14 @@
 package org.openweathermap.sql.model;
 
-import com.app.sqlite.base.BaseModel;
-
 import java.util.HashMap;
 
 import android.content.ContentValues;
 
+import com.app.sqlite.base.BaseModel;
+
 public class WeatherModel extends BaseModel {
 	private int pid;
+	private int cityId;
 	private String rawId;
 	private String description;
 	private String descriptionDetailed;
@@ -26,6 +27,7 @@ public class WeatherModel extends BaseModel {
 	private double cloudCoverage;
 
 	private static final String COLUMN_PID = "pid";
+	private static final String COLUMN_CITYID = "cityId";
 	private static final String COLUMN_RAWID = "rawId";
 	private static final String COLUMN_DESCRIPTION = "description";
 	private static final String COLUMN_DESCRIPTIONDETAILED = "descriptionDetailed";
@@ -52,6 +54,13 @@ public class WeatherModel extends BaseModel {
 
 	public void setPid(int newVal) {
 		pid = newVal;
+	}
+	public int getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(int newVal) {
+		cityId = newVal;
 	}
 	public String getRawId() {
 		return rawId;
@@ -170,6 +179,7 @@ public class WeatherModel extends BaseModel {
 	public HashMap<String,Integer> getModelColumnTypeMap() {
 		HashMap<String,Integer> modelColumns = new HashMap<String,Integer>();
 		modelColumns.put(COLUMN_PID, BaseModel.FIELD_INTEGER);
+		modelColumns.put(COLUMN_CITYID, BaseModel.FIELD_INTEGER);
 		modelColumns.put(COLUMN_RAWID, BaseModel.FIELD_STRING);
 		modelColumns.put(COLUMN_DESCRIPTION, BaseModel.FIELD_STRING);
 		modelColumns.put(COLUMN_DESCRIPTIONDETAILED, BaseModel.FIELD_STRING);
@@ -192,6 +202,7 @@ public class WeatherModel extends BaseModel {
 	@Override
 	public ContentValues toContentValues() {
 		ContentValues contentValues = new ContentValues();
+		contentValues.put(COLUMN_CITYID, getCityId());
 		contentValues.put(COLUMN_RAWID, getRawId());
 		contentValues.put(COLUMN_DESCRIPTION, getDescription());
 		contentValues.put(COLUMN_DESCRIPTIONDETAILED, getDescriptionDetailed());
