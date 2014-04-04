@@ -1,10 +1,9 @@
 CREATE TABLE Weather (
 	pid integer PRIMARY KEY NOT NULL,
 	cityId integer NOT NULL,
-	rawId varchar NOT NULL,
+	iconId integer NULL,
 	description varchar NOT NULL,
 	descriptionDetailed varchar NOT NULL,
-	icon blob NOT NULL,
 	timestamp long NOT NULL,
 	tmpDay real NOT NULL,
 	tmpMin real NOT NULL,
@@ -18,5 +17,6 @@ CREATE TABLE Weather (
 	windDegrees real NOT NULL,
 	cloudCoverage real NOT NULL,
 	
-	FOREIGN KEY (cityId) REFERENCES City(pid)
+	FOREIGN KEY (cityId) REFERENCES City(pid),
+	FOREIGN KEY (iconId) REFERENCES Icon(pid)
 );

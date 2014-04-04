@@ -3,8 +3,6 @@ package org.openweathermap.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openweathermap.dto.DayDTO;
-import org.openweathermap.dto.ResultDTO;
 import org.openweathermap.fragment.ForecastFragment;
 
 import android.os.Bundle;
@@ -15,13 +13,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class ForecastAdapter extends FragmentPagerAdapter {
 	private List<Fragment> mFragments;
 	
-	public ForecastAdapter(FragmentManager fragmentManager, ResultDTO resultDTO) {
+	public ForecastAdapter(FragmentManager fragmentManager, int resultCount) {
 		super(fragmentManager);
 		
 		mFragments = new ArrayList<Fragment>();
 		
-		DayDTO[] dayDTOArray = resultDTO.getDay();
-		for (int i = 0; i < dayDTOArray.length; i++) {
+		for (int i = 0; i < resultCount; i++) {
 			Bundle args = new Bundle();
 			args.putInt(ForecastFragment.ARG_DATA_POSITION, i);
 			ForecastFragment forecastFragment = new ForecastFragment();

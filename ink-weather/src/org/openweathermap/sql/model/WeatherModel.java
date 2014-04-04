@@ -9,10 +9,9 @@ import com.app.sqlite.base.BaseModel;
 public class WeatherModel extends BaseModel {
 	private int pid;
 	private int cityId;
-	private String rawId;
+	private int iconId;
 	private String description;
 	private String descriptionDetailed;
-	private byte[] icon;
 	private long timestamp;
 	private double tmpDay;
 	private double tmpMin;
@@ -28,10 +27,9 @@ public class WeatherModel extends BaseModel {
 
 	private static final String COLUMN_PID = "pid";
 	private static final String COLUMN_CITYID = "cityId";
-	private static final String COLUMN_RAWID = "rawId";
+	private static final String COLUMN_ICONID = "iconId";
 	private static final String COLUMN_DESCRIPTION = "description";
 	private static final String COLUMN_DESCRIPTIONDETAILED = "descriptionDetailed";
-	private static final String COLUMN_ICON = "icon";
 	private static final String COLUMN_TIMESTAMP = "timestamp";
 	private static final String COLUMN_TMPDAY = "tmpDay";
 	private static final String COLUMN_TMPMIN = "tmpMin";
@@ -62,13 +60,14 @@ public class WeatherModel extends BaseModel {
 	public void setCityId(int newVal) {
 		cityId = newVal;
 	}
-	public String getRawId() {
-		return rawId;
+	public int getIconId() {
+		return iconId;
 	}
 
-	public void setRawId(String newVal) {
-		rawId = newVal;
+	public void setIconId(int newVal) {
+		iconId = newVal;
 	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -82,13 +81,6 @@ public class WeatherModel extends BaseModel {
 
 	public void setDescriptionDetailed(String newVal) {
 		descriptionDetailed = newVal;
-	}
-	public byte[] getIcon() {
-		return icon;
-	}
-
-	public void setIcon(byte[] newVal) {
-		icon = newVal;
 	}
 	public long getTimestamp() {
 		return timestamp;
@@ -180,10 +172,9 @@ public class WeatherModel extends BaseModel {
 		HashMap<String,Integer> modelColumns = new HashMap<String,Integer>();
 		modelColumns.put(COLUMN_PID, BaseModel.FIELD_INTEGER);
 		modelColumns.put(COLUMN_CITYID, BaseModel.FIELD_INTEGER);
-		modelColumns.put(COLUMN_RAWID, BaseModel.FIELD_STRING);
+		modelColumns.put(COLUMN_ICONID, BaseModel.FIELD_INTEGER);
 		modelColumns.put(COLUMN_DESCRIPTION, BaseModel.FIELD_STRING);
 		modelColumns.put(COLUMN_DESCRIPTIONDETAILED, BaseModel.FIELD_STRING);
-		modelColumns.put(COLUMN_ICON, BaseModel.FIELD_BLOB);
 		modelColumns.put(COLUMN_TIMESTAMP, BaseModel.FIELD_LONG);
 		modelColumns.put(COLUMN_TMPDAY, BaseModel.FIELD_DOUBLE);
 		modelColumns.put(COLUMN_TMPMIN, BaseModel.FIELD_DOUBLE);
@@ -203,10 +194,9 @@ public class WeatherModel extends BaseModel {
 	public ContentValues toContentValues() {
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(COLUMN_CITYID, getCityId());
-		contentValues.put(COLUMN_RAWID, getRawId());
+		contentValues.put(COLUMN_ICONID, getIconId());
 		contentValues.put(COLUMN_DESCRIPTION, getDescription());
 		contentValues.put(COLUMN_DESCRIPTIONDETAILED, getDescriptionDetailed());
-		contentValues.put(COLUMN_ICON, getIcon());
 		contentValues.put(COLUMN_TIMESTAMP, getTimestamp());
 		contentValues.put(COLUMN_TMPDAY, getTmpDay());
 		contentValues.put(COLUMN_TMPMIN, getTmpMin());

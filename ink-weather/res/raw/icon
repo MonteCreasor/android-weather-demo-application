@@ -1,0 +1,5 @@
+CREATE TABLE Icon (
+	pid integer PRIMARY KEY NOT NULL,
+	code varchar NOT NULL,
+	raw blob NULL
+);

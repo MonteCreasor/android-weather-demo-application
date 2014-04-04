@@ -2,11 +2,17 @@ package org.openweathermap.activity;
 
 import org.openweathermap.activity.base.BaseActivity;
 import org.openweathermap.adapter.ForecastAdapter;
-import org.openweathermap.dto.CityDTO;
-import org.openweathermap.dto.DayDTO;
+import org.openweathermap.asynctask.SaveForecastAsyncTask;
+import org.openweathermap.asynctask.base.BaseAsyncTask;
+import org.openweathermap.asynctask.base.BaseAsyncTask.AsyncCallback;
+import org.openweathermap.asynctask.base.BaseResponse;
+import org.openweathermap.asynctask.param.SaveForecastParam;
+import org.openweathermap.asynctask.response.SaveForecastResponse;
 import org.openweathermap.dto.ResultDTO;
 import org.openweathermap.dto.base.IDTO;
 import org.openweathermap.fragment.ModalDialogFragment;
+import org.openweathermap.sql.model.CityModel;
+import org.openweathermap.sql.model.WeatherModel;
 import org.openweathermap.utils.RESTProvider;
 import org.openweathermap.view.ViewPagerIndicatorView;
 import org.openweathermap.view.ViewPagerIndicatorView.PagerPositionCallback;
@@ -33,23 +39,24 @@ import com.ink.weather.R;
  * opens the navigation drawer.
  * @author samkirton
  */
-public class MainActivity extends BaseActivity implements OnClickListener, VolleyResponseCallback, PagerPositionCallback {
+public class MainActivity extends BaseActivity implements OnClickListener, VolleyResponseCallback, AsyncCallback, PagerPositionCallback {
 	private TextView uiSelectNewCityTextView;
 	private ViewPager uiViewPager;
 	private ViewPagerIndicatorView uiViewPagerIndicatorView;
 	private TextView uiNoResultsTextView;
 	
-	private CityDTO mCityDTO;
-	private DayDTO[] mDayDTOArray;
+	private CityModel mCityModel;
+	private WeatherModel[] mWeatherModelArray;
 	private ForecastAdapter mForecastAdapter;
 	private boolean mHasNoResults;
+	private SaveForecastAsyncTask mSaveForecastAsyncTask;
 	
-	public CityDTO getCityDTO() {
-		return mCityDTO;
+	public CityModel getCityModel() {
+		return mCityModel;
 	}
 	
-	public DayDTO[] getDayDTOArray() {
-		return mDayDTOArray;
+	public WeatherModel[] getWeatherModelArray() {
+		return mWeatherModelArray;
 	}
 	
     @Override
@@ -93,28 +100,21 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	 * Close the loading dialog and initialise the WeatherDataView
 	 * @param	resultDTO	The weather results json as an easy to use DTO
 	 */
-	private void requestWeatherInformation_Finished(ResultDTO resultDTO) {
+	private void requestWeatherInformation_Finished(SaveForecastResponse saveForecastResponse) {
 		closeDialog();
+
+		mCityModel = saveForecastResponse.getCityModel();
+		mWeatherModelArray = saveForecastResponse.getWeatherModelArray();
 		
-		if (resultDTO.getDay() != null && resultDTO.getDay().length > 0) {	
-			mCityDTO = resultDTO.getCity();
-			mDayDTOArray = resultDTO.getDay();
-			
-			mForecastAdapter = new ForecastAdapter(getSupportFragmentManager(), resultDTO);
-			uiViewPager.setAdapter(mForecastAdapter);
-			
-			uiViewPagerIndicatorView.init(mDayDTOArray);
-			uiViewPagerIndicatorView.setPagerPositionCallback(this);
-			uiViewPager.setOnPageChangeListener(uiViewPagerIndicatorView);
-			
-			if (mHasNoResults)
-				uiNoResultsTextView.setVisibility(View.GONE);
-		} else {
-			showDialog(
-				getResources().getString(R.string.activity_main_could_not_find_city),
-				ModalDialogFragment.BUTTON_TYPE_OK
-			);
-		}
+		mForecastAdapter = new ForecastAdapter(getSupportFragmentManager(), mWeatherModelArray.length);
+		uiViewPager.setAdapter(mForecastAdapter);
+		
+		uiViewPagerIndicatorView.init(mWeatherModelArray);
+		uiViewPagerIndicatorView.setPagerPositionCallback(this);
+		uiViewPager.setOnPageChangeListener(uiViewPagerIndicatorView);
+		
+		if (mHasNoResults)
+			uiNoResultsTextView.setVisibility(View.GONE);
 	}
 	
 	/**
@@ -139,7 +139,14 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	@Override
 	public void onVolleyResponse(IDTO dto) {
 		if (dto instanceof ResultDTO) {
-			requestWeatherInformation_Finished((ResultDTO)dto);
+			ResultDTO resultDTO = (ResultDTO)dto;
+			SaveForecastParam saveForecastParam = new SaveForecastParam();
+			saveForecastParam.setCityDTO(resultDTO.getCity());
+			saveForecastParam.setDayDTOArray(resultDTO.getDay());
+			
+			mSaveForecastAsyncTask = new SaveForecastAsyncTask(this);
+			mSaveForecastAsyncTask.setAsyncCallback(this);
+			mSaveForecastAsyncTask.execute(saveForecastParam);
 		}
 	}
 
@@ -160,6 +167,14 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 		if (!mHasNoResults) {
 			mHasNoResults = true;
 			uiNoResultsTextView.setVisibility(View.VISIBLE);
+		}
+	}
+	
+	@Override
+	public void onAsyncTaskFinished(BaseResponse response, BaseAsyncTask asyncTask) {
+		if (asyncTask == mSaveForecastAsyncTask) {
+			SaveForecastResponse saveForecastResponse = (SaveForecastResponse)response;
+			requestWeatherInformation_Finished(saveForecastResponse);
 		}
 	}
 	

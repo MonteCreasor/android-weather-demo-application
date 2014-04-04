@@ -8,18 +8,14 @@ import com.app.sqlite.base.BaseModel;
 
 public class CityModel extends BaseModel {
 	private int pid;
-	private String rawId;
 	private String name;
 	private String country;
-	private String displayValue;
 	private String latitude;
 	private String longitude;
 
 	private static final String COLUMN_PID = "pid";
-	private static final String COLUMN_RAWID = "rawId";
 	private static final String COLUMN_NAME = "name";
 	private static final String COLUMN_COUNTRY = "country";
-	private static final String COLUMN_DISPLAYVALUE = "displayValue";
 	private static final String COLUMN_LATITUDE = "latitude";
 	private static final String COLUMN_LONGITUDE = "longitude";
 
@@ -33,13 +29,7 @@ public class CityModel extends BaseModel {
 	public void setPid(int newVal) {
 		pid = newVal;
 	}
-	public String getRawId() {
-		return rawId;
-	}
 
-	public void setRawId(String newVal) {
-		rawId = newVal;
-	}
 	public String getName() {
 		return name;
 	}
@@ -53,13 +43,6 @@ public class CityModel extends BaseModel {
 
 	public void setCountry(String newVal) {
 		country = newVal;
-	}
-	public String getDisplayValue() {
-		return displayValue;
-	}
-
-	public void setDisplayValue(String newVal) {
-		displayValue = newVal;
 	}
 	public String getLatitude() {
 		return latitude;
@@ -80,10 +63,8 @@ public class CityModel extends BaseModel {
 	public HashMap<String,Integer> getModelColumnTypeMap() {
 		HashMap<String,Integer> modelColumns = new HashMap<String,Integer>();
 		modelColumns.put(COLUMN_PID, BaseModel.FIELD_INTEGER);
-		modelColumns.put(COLUMN_RAWID, BaseModel.FIELD_STRING);
 		modelColumns.put(COLUMN_NAME, BaseModel.FIELD_STRING);
 		modelColumns.put(COLUMN_COUNTRY, BaseModel.FIELD_STRING);
-		modelColumns.put(COLUMN_DISPLAYVALUE, BaseModel.FIELD_STRING);
 		modelColumns.put(COLUMN_LATITUDE, BaseModel.FIELD_STRING);
 		modelColumns.put(COLUMN_LONGITUDE, BaseModel.FIELD_STRING);
 		return modelColumns;
@@ -92,10 +73,8 @@ public class CityModel extends BaseModel {
 	@Override
 	public ContentValues toContentValues() {
 		ContentValues contentValues = new ContentValues();
-		contentValues.put(COLUMN_RAWID, getRawId());
 		contentValues.put(COLUMN_NAME, getName());
 		contentValues.put(COLUMN_COUNTRY, getCountry());
-		contentValues.put(COLUMN_DISPLAYVALUE, getDisplayValue());
 		contentValues.put(COLUMN_LATITUDE, getLatitude());
 		contentValues.put(COLUMN_LONGITUDE, getLongitude());
 		return contentValues;

@@ -2,7 +2,7 @@ package org.openweathermap.view;
 
 import java.util.ArrayList;
 
-import org.openweathermap.dto.DayDTO;
+import org.openweathermap.sql.model.WeatherModel;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
  * @author samkirton
  */
 public class ViewPagerIndicatorView extends LinearLayout implements OnPageChangeListener, OnClickListener, AnimationListener {
-	private DayDTO[] mDayDTOArray;
+	private WeatherModel[] mWeatherModelArray;
 	private Context mContext;
 	private ArrayList<DateDisplayView> mDateDisplayViewCollection;
 	private PagerPositionCallback mPagerPositionCallback;
@@ -41,17 +41,17 @@ public class ViewPagerIndicatorView extends LinearLayout implements OnPageChange
 	
 	/**
 	 * Populate the indicator view with a list of day data
-	 * @param	dayDTOArray	The data to populate the indicator with
+	 * @param	weatherModelArray	The data to populate the indicator with
 	 */
-	public void init(DayDTO[] dayDTOArray) {
-		mDayDTOArray = dayDTOArray;
+	public void init(WeatherModel[] weatherModelArray) {
+		mWeatherModelArray = weatherModelArray;
 		mDateDisplayViewCollection = new ArrayList<DateDisplayView>();
 		
 		this.removeAllViews();
 		
-		for (int i = 0; i < mDayDTOArray.length; i++) {
-			DayDTO dayDTO = mDayDTOArray[i];
-			long timestamp = dayDTO.getDt();
+		for (int i = 0; i < mWeatherModelArray.length; i++) {
+			WeatherModel weatherModel = mWeatherModelArray[i];
+			long timestamp = weatherModel.getTimestamp();
 			
 			DateDisplayView dateDisplayView = new DateDisplayView(mContext);
 			dateDisplayView.init(timestamp,i);

@@ -1,8 +1,8 @@
 package org.openweathermap.fragment;
 
 import org.openweathermap.activity.MainActivity;
-import org.openweathermap.dto.CityDTO;
-import org.openweathermap.dto.DayDTO;
+import org.openweathermap.sql.model.CityModel;
+import org.openweathermap.sql.model.WeatherModel;
 import org.openweathermap.utils.RESTProvider;
 import org.openweathermap.utils.StringHelper;
 import org.openweathermap.view.WeatherDataRowView;
@@ -54,30 +54,30 @@ public class ForecastFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		mDataPosition = getArguments().getInt(ARG_DATA_POSITION);
 		
-		DayDTO dayDTO = ((MainActivity)getActivity()).getDayDTOArray()[mDataPosition];
-		CityDTO cityDTO = ((MainActivity)getActivity()).getCityDTO();
-		init(dayDTO,cityDTO);
-		requestWeatherConditionIcon(dayDTO.getWeatherList()[0].getIcon());
+		WeatherModel weatherModel = ((MainActivity)getActivity()).getWeatherModelArray()[mDataPosition];
+		CityModel cityModel = ((MainActivity)getActivity()).getCityModel();
+		init(weatherModel,cityModel);
+		//requestWeatherConditionIcon(dayDTO.getWeatherList()[0].getIcon());
 	}
 	
 	/**
 	 * Populate the view with city data and fade the layout in
 	 */
-	public void init(DayDTO dayDTO, CityDTO cityDTO) {
-		String locationName = cityDTO.getName() + " (" + cityDTO.getCountry() + ")";
-		double latitude = cityDTO.getCoord().getLat();
-		double longitude = cityDTO.getCoord().getLon();
-		String coords = "(" + String.valueOf(latitude) + "," + String.valueOf(longitude) + ")";
+	public void init(WeatherModel weatherModel, CityModel cityModel) {
+		String locationName = cityModel.getName() + " (" + cityModel.getCountry() + ")";
+		String latitude = cityModel.getLatitude();
+		String longitude = cityModel.getLongitude();
+		String coords = "(" + latitude + "," + longitude + ")";
 		
-		String mainCondition = dayDTO.getWeatherList()[0].getMain();
-		String conditionDescription = "(" + dayDTO.getWeatherList()[0].getDescription() + ")";
+		String mainCondition = weatherModel.getDescription();
+		String conditionDescription = "(" + weatherModel.getDescriptionDetailed() + ")";
 		
-		String temperature = String.valueOf(dayDTO.getTemp().getDay()) + StringHelper.buildDegreeSymbol();
-		double temperatureMin = dayDTO.getTemp().getMin();
-		double temperatureMax = dayDTO.getTemp().getMax();
+		String temperature = String.valueOf(weatherModel.getTmpDay()) + StringHelper.buildDegreeSymbol();
+		double temperatureMin = weatherModel.getTmpMin();
+		double temperatureMax = weatherModel.getTmpMax();
 		String temperatureRange = String.valueOf(temperatureMin) + " - " + String.valueOf(temperatureMax) + StringHelper.buildDegreeSymbol();
-		String humidity = String.valueOf(dayDTO.getHumidity()) + "%";
-		String atmosphericPressure = String.valueOf(dayDTO.getPressure()) + "hpa";
+		String humidity = String.valueOf(weatherModel.getHumidity()) + "%";
+		String atmosphericPressure = String.valueOf(weatherModel.getPressure()) + "hpa";
 		
 		uiCityTextView.setText(locationName);
 		uiLongLatTextView.setText(coords);
