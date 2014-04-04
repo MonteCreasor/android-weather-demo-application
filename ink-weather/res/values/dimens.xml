@@ -12,9 +12,11 @@
 	<dimen name="activity_main_select_new_city_textsize">16sp</dimen>
 	<dimen name="activity_main_forecast_pager_margin">20dp</dimen>
 	<dimen name="activity_main_no_results_textsize">16sp</dimen>
+	<dimen name="activity_main_header_padding">15dp</dimen>
 	
 	<!-- fragment_modal_dialog -->
 	<dimen name="fragment_modal_dialog_width">220dp</dimen>
+	<dimen name="fragment_modal_dialog_textsize">16sp</dimen>
 	
 	<!-- fragment_forecast -->
 	<dimen name="fragment_forecast_city_textsize">26sp</dimen>
@@ -26,7 +28,7 @@
 	<dimen name="fragment_forecast_border_margin">3dp</dimen>
 	
 	<!-- button -->
-	<dimen name="button_textsize">14dp</dimen>
+	<dimen name="button_textsize">16dp</dimen>
 	<dimen name="button_padding">5dp</dimen>
 
 	<!-- view_weather_data_row -->

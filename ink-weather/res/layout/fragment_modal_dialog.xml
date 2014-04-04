@@ -22,6 +22,7 @@
 		    android:layout_height="wrap_content"
 		   	android:textColor="@color/fragment_dialog_text_foreground"
 		   	android:textStyle="bold"
+		   	android:textSize="@dimen/fragment_modal_dialog_textsize"
 		   	android:gravity="center_horizontal"
 		   	android:lineSpacingExtra="@dimen/activity_default_padding_minor"/>
 		
