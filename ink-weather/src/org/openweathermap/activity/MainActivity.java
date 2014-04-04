@@ -1,6 +1,5 @@
 package org.openweathermap.activity;
 
-import org.openweather.R;
 import org.openweathermap.activity.base.BaseActivity;
 import org.openweathermap.adapter.ForecastAdapter;
 import org.openweathermap.dto.CityDTO;
@@ -25,6 +24,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
+import com.ink.weather.R;
 
 /**
  * An activity that loads the current weather details from openweathermap.org 
@@ -133,8 +133,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	@Override
 	public void onVolleyResponse(IDTO dto) {
 		if (dto instanceof ResultDTO) {
-			ResultDTO resultDTO = (ResultDTO)dto;
-			requestWeatherInformation_Finished(resultDTO);
+			requestWeatherInformation_Finished((ResultDTO)dto);
 		}
 	}
 

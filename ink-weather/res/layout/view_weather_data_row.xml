@@ -7,7 +7,7 @@
 	    android:id="@+id/view_weather_data_row_title"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"   	    
-		android:textColor="@color/activity_main_foreground"
+		android:textColor="@color/fragment_forecast_foreground"
 		android:textStyle="bold"
 		android:textSize="@dimen/view_weather_data_row_textsize"/>
   	    
@@ -15,7 +15,7 @@
 	    android:id="@+id/view_weather_data_row_value"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"   	    
-		android:textColor="@color/activity_main_foreground"
+		android:textColor="@color/fragment_forecast_foreground"
 		android:textSize="@dimen/view_weather_data_row_textsize"
 		android:layout_alignParentRight="true"/>
   	 

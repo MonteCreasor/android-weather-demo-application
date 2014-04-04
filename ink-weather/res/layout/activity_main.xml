@@ -27,8 +27,8 @@
 				android:textColor="@color/activity_main_select_new_city_foreground"
 				android:layout_marginBottom="@dimen/activity_main_select_new_city_margin"
 				android:text="@string/activity_main_select_new_city"/>
-	        
-			<android.support.v4.view.ViewPager
+			    
+			<org.openweathermap.view.FadeViewPager
 				android:id="@+id/activity_main_forecast_pager_viewpager"
 				android:layout_width="@dimen/activity_main_viewpager_width"
 				android:layout_height="@dimen/activity_main_viewpager_height"

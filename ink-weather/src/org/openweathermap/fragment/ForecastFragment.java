@@ -1,6 +1,5 @@
 package org.openweathermap.fragment;
 
-import org.openweather.R;
 import org.openweathermap.activity.MainActivity;
 import org.openweathermap.dto.CityDTO;
 import org.openweathermap.dto.DayDTO;
@@ -17,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
+import com.ink.weather.R;
 
 public class ForecastFragment extends Fragment {
 	private TextView uiCityTextView;

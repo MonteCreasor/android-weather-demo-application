@@ -1,6 +1,5 @@
 package org.openweathermap.adapter;
 
-import org.openweather.R;
 import org.openweathermap.dto.CityDTO;
 import org.openweathermap.utils.StringHelper;
 
@@ -10,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.ink.weather.R;
 
 /**
  * An adapter to display a list of City DTO using the view_city_list_item layout resource

@@ -1,8 +1,8 @@
 package org.openweathermap.utils;
 
-import org.openweather.R;
-
 import android.content.Context;
+
+import com.ink.weather.R;
 
 /**
  * Builds web service URLs based on the arguments provided

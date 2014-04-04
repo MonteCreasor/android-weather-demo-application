@@ -1,11 +1,12 @@
 package org.openweathermap.sql;
 
-import org.openweather.R;
 import org.openweathermap.utils.ResourceHelper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.ink.weather.R;
 
 /**
  * A provider class that creates a SQLite database schema
@@ -24,11 +25,11 @@ public class SQLInitProvider extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		String cityCacheSchema = ResourceHelper.getFileContentsAsString(mContext, R.raw.city);
-		String weatherCacheSchema = ResourceHelper.getFileContentsAsString(mContext, R.raw.weather);
-		
-		database.execSQL(cityCacheSchema);
-		database.execSQL(weatherCacheSchema);
+//		String cityCacheSchema = ResourceHelper.getFileContentsAsString(mContext, R.raw.city);
+//		String weatherCacheSchema = ResourceHelper.getFileContentsAsString(mContext, R.raw.weather);
+//		
+//		database.execSQL(cityCacheSchema);
+//		database.execSQL(weatherCacheSchema);
 	}
 
 	@Override

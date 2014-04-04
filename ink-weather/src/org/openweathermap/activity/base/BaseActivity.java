@@ -1,6 +1,5 @@
 package org.openweathermap.activity.base;
 
-import org.openweather.R;
 import org.openweathermap.fragment.ModalDialogFragment;
 
 import android.R.color;
@@ -12,6 +11,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
+
+import com.ink.weather.R;
 
 /**
  * Inheriting from BaseActivity provides an Activity with a NavigationDrawer 

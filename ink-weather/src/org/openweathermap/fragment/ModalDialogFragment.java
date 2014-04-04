@@ -1,7 +1,5 @@
 package org.openweathermap.fragment;
 
-import org.openweather.R;
-
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnKeyListener;
 import android.os.Bundle;
@@ -13,6 +11,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.ink.weather.R;
 
 /**
  * Displays a dialog with an option to include a message or 

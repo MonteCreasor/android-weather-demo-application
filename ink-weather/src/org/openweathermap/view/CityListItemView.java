@@ -1,12 +1,12 @@
 package org.openweathermap.view;
 
-import org.openweather.R;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.ink.weather.R;
 
 /**
  * A view to represent a city row that is displayed in the "Popular Cities"

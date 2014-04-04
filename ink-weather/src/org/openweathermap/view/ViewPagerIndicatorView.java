@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AlphaAnimation;
 import android.widget.LinearLayout;
 
 /**
@@ -32,6 +33,7 @@ public class ViewPagerIndicatorView extends LinearLayout implements OnPageChange
 	public ViewPagerIndicatorView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		mContext = context;
+		setVisibility(GONE);
 	}
 	
 	/**
@@ -61,6 +63,19 @@ public class ViewPagerIndicatorView extends LinearLayout implements OnPageChange
 			if (i == 0) 
 				dateDisplayView.selected();
 		}
+		
+		showView();
+	}
+	
+	/**
+	 * Fade the layout in
+	 */
+	public void showView() {
+		AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
+		animation.setDuration(1500);
+		animation.setRepeatCount(0);
+		this.startAnimation(animation);
+		this.setVisibility(VISIBLE);
 	}
 	
 	@Override

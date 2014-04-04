@@ -1,6 +1,5 @@
 package org.openweathermap.fragment;
 
-import org.openweather.R;
 import org.openweathermap.activity.MainActivity;
 
 import android.os.Bundle;
@@ -13,7 +12,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+
+import com.ink.weather.R;
 
 /**
  * This class is the Fragment assigned to the MainActivity NavigationDrawer, 
@@ -26,7 +26,7 @@ import android.widget.ListView;
 public class SelectCountryFragment extends Fragment implements OnItemClickListener, OnClickListener {
 	private EditText uiSearchEditText;
 	private Button uiSearchButton;
-	private ListView uiPopularCityListView;
+//	private ListView uiPopularCityListView;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
@@ -34,14 +34,14 @@ public class SelectCountryFragment extends Fragment implements OnItemClickListen
 		
 		uiSearchEditText = (EditText)view.findViewById(R.id.fragment_select_city_search_edittext);
 		uiSearchButton = (Button)view.findViewById(R.id.fragment_select_city_search_button);
-		uiPopularCityListView = (ListView)view.findViewById(R.id.fragment_select_country_popular_city_list);
+//		uiPopularCityListView = (ListView)view.findViewById(R.id.fragment_select_country_popular_city_list);
 		
 //		CityArrayAdapter cityArrayAdapter = new CityArrayAdapter(getActivity(), MockHelper.buildMockCityArray());
 //		uiPopularCityListView.setAdapter(cityArrayAdapter);
 		
 		uiSearchEditText.setOnClickListener(this);
 		uiSearchButton.setOnClickListener(this);
-		uiPopularCityListView.setOnItemClickListener(this);
+//		uiPopularCityListView.setOnItemClickListener(this);
 
 		return view;
 	}

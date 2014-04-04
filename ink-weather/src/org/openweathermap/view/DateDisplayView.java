@@ -1,6 +1,5 @@
 package org.openweathermap.view;
 
-import org.openweather.R;
 import org.openweathermap.utils.DateHelper;
 
 import android.content.Context;
@@ -8,6 +7,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.ink.weather.R;
 
 /**
  * Display the day, day of month and 3 letter month for the provided timestamp

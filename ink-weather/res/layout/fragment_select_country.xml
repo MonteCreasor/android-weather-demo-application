@@ -41,16 +41,4 @@
 	        
     </LinearLayout>
     
-    <TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/fragment_select_country_popular_cities"
-		style="@style/SelectCountryHeader"/>
-    
-    <ListView 
-        android:id="@+id/fragment_select_country_popular_city_list"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="@color/fragment_select_country_background"/>
-    
 </LinearLayout>

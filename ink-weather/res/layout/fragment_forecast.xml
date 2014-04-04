@@ -30,14 +30,14 @@
 			        android:layout_height="wrap_content"
 			        android:textSize="@dimen/fragment_forecast_city_textsize"
 			        android:textStyle="bold"
-			        android:textColor="@color/activity_main_foreground" />
+			        android:textColor="@color/fragment_forecast_foreground" />
 			    
 			    <TextView
 			        android:id="@+id/fragment_forecast_lng_lat"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:textSize="@dimen/fragment_forecast_latlng_textsize"
-			        android:textColor="@color/activity_main_foreground"/>
+			        android:textColor="@color/fragment_forecast_foreground"/>
 			    
 		    </LinearLayout>
 		    
@@ -62,7 +62,7 @@
 			   	    android:id="@+id/fragment_forecast_weather_conditions_main"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"   	    
-					android:textColor="@color/activity_main_foreground"
+					android:textColor="@color/fragment_forecast_foreground"
 					android:textStyle="bold"
 					android:textSize="@dimen/fragment_forecast_weather_condition_textsize"/>
 			   	
@@ -72,7 +72,7 @@
 					android:layout_height="match_parent"
 					android:gravity="center_vertical"   	  
 					android:layout_marginLeft="@dimen/activity_default_padding_minor"  
-					android:textColor="@color/activity_main_foreground"
+					android:textColor="@color/fragment_forecast_foreground"
 					android:textSize="@dimen/fragment_forecast_weather_condition_description_textsize"/>
 		   	
 		   	</LinearLayout>
@@ -81,7 +81,7 @@
 			    android:id="@+id/fragment_forecast_temperature"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"   	    
-				android:textColor="@color/activity_main_foreground"
+				android:textColor="@color/fragment_forecast_foreground"
 				android:textSize="@dimen/fragment_forecast_temp_textsize"
 				android:textStyle="bold"
 				android:layout_alignParentRight="true"/>
