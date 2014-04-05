@@ -1,5 +1,6 @@
 package org.openweathermap.utils;
 
+
 /**
  * Helper methods related to strings
  * @author samkirton

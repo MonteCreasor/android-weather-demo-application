@@ -3,8 +3,6 @@
     <!-- activity -->
     <dimen name="activity_default_padding">10dp</dimen>
     <dimen name="activity_default_padding_minor">5dp</dimen>
-	<dimen name="activity_main_viewpager_width">300dp</dimen>
-	<dimen name="activity_main_viewpager_height">245dp</dimen>
 	<dimen name="activity_corner_radius">3dp</dimen>
 	
 	<!-- activity_main -->
@@ -13,6 +11,11 @@
 	<dimen name="activity_main_forecast_pager_margin">20dp</dimen>
 	<dimen name="activity_main_no_results_textsize">16sp</dimen>
 	<dimen name="activity_main_header_padding">15dp</dimen>
+	<dimen name="activity_main_viewpager_width">300dp</dimen>
+	<dimen name="activity_main_viewpager_height">245dp</dimen>
+	
+	<!-- activity_main_land -->
+	<dimen name="activity_main_land_viewpager_height">230dp</dimen>
 	
 	<!-- fragment_modal_dialog -->
 	<dimen name="fragment_modal_dialog_width">220dp</dimen>

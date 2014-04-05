@@ -50,15 +50,25 @@ public class ForecastFragment extends Fragment {
 	}
 	
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
+	public void onResume() {
+		super.onResume();
 		mDataPosition = getArguments().getInt(ARG_DATA_POSITION);
 		
 		WeatherModel weatherModel = ((MainActivity)getActivity()).getWeatherModelArray()[mDataPosition];
 		CityModel cityModel = ((MainActivity)getActivity()).getCityModel();
 		init(weatherModel,cityModel);
-		//requestWeatherConditionIcon(dayDTO.getWeatherList()[0].getIcon());
 	}
+	
+//	@Override
+//	public void onActivityCreated(Bundle savedInstanceState) {
+//		super.onActivityCreated(savedInstanceState);
+//		mDataPosition = getArguments().getInt(ARG_DATA_POSITION);
+//		
+//		WeatherModel weatherModel = ((MainActivity)getActivity()).getWeatherModelArray()[mDataPosition];
+//		CityModel cityModel = ((MainActivity)getActivity()).getCityModel();
+//		init(weatherModel,cityModel);
+//		//requestWeatherConditionIcon(dayDTO.getWeatherList()[0].getIcon());
+//	}
 	
 	/**
 	 * Populate the view with city data and fade the layout in

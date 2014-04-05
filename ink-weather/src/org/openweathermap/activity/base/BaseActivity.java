@@ -35,24 +35,27 @@ public abstract class BaseActivity extends FragmentActivity {
 	 */
     protected void useNavigationDrawer() {
 		final DrawerLayout uiDrawerLayout = getNavigationDrawer();
-		uiDrawerLayout.setScrimColor(color.transparent);
-		mDrawerToggle = new ActionBarDrawerToggle(
-				this, 
-				uiDrawerLayout, 
-				R.drawable.ic_launcher, 
-				R.string.app_name, 
-				R.string.app_name) {
-			
-			public void onDrawerClosed(View drawerView) { }
-			
-			public void onDrawerOpened(View drawerView) { }
-			
-			public void onDrawerSlide(View drawerView, float slideOffset) {
-				slideActivityContent(drawerView,slideOffset);
-			}
-		};
 		
-		uiDrawerLayout.setDrawerListener(mDrawerToggle);
+		if (uiDrawerLayout != null) {
+			uiDrawerLayout.setScrimColor(color.transparent);
+			mDrawerToggle = new ActionBarDrawerToggle(
+					this, 
+					uiDrawerLayout, 
+					R.drawable.ic_launcher, 
+					R.string.app_name, 
+					R.string.app_name) {
+				
+				public void onDrawerClosed(View drawerView) { }
+				
+				public void onDrawerOpened(View drawerView) { }
+				
+				public void onDrawerSlide(View drawerView, float slideOffset) {
+					slideActivityContent(drawerView,slideOffset);
+				}
+			};
+			
+			uiDrawerLayout.setDrawerListener(mDrawerToggle);
+		}
 	}
     
 	/**

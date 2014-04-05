@@ -1,0 +1,53 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <fragment
+	    android:name="org.openweathermap.fragment.SelectCountryFragment"
+	    android:id="@+id/activity_main_navigation_fragment"
+		style="@style/FragmentDrawerLayout"/>
+    
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:background="@color/activity_main_background">
+	    
+	    <LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_centerVertical="true"
+			android:orientation="vertical"
+			android:gravity="center_horizontal">	   
+			    
+			<org.openweathermap.view.ViewPagerFade
+				android:id="@+id/activity_main_forecast_pager_viewpager"
+				android:layout_width="@dimen/activity_main_viewpager_width"
+				android:layout_height="@dimen/activity_main_land_viewpager_height"
+				style="@style/ViewPager"/>
+			
+			<org.openweathermap.view.ViewPagerIndicatorView
+			    android:id="@+id/activity_main_forecast_view_pager_indicator_view"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginTop="@dimen/activity_default_padding"/>
+			
+			<TextView
+			    android:id="@+id/activity_main_forecast_no_results"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:gravity="center_horizontal"
+			    android:layout_gravity="center_horizontal|center_vertical"
+			    android:textSize="@dimen/activity_main_no_results_textsize"
+			    android:textColor="@color/activity_main_no_results_foreground"
+			    android:textStyle="bold"
+			    android:text="@string/activity_main_no_results"
+			    android:visibility="gone"/>
+		
+		</LinearLayout>
+	
+	</RelativeLayout>
+
+</LinearLayout>

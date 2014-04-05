@@ -21,6 +21,8 @@ import org.openweathermap.view.ViewPagerIndicatorView.PagerPositionCallback;
 import org.openweathermap.volley.callback.VolleyResponseCallback;
 import org.openweathermap.volley.provider.VolleyRequest;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -28,6 +30,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -46,6 +49,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	private ViewPager uiViewPager;
 	private ViewPagerIndicatorView uiViewPagerIndicatorView;
 	private TextView uiNoResultsTextView;
+	private LinearLayout uiMainHeaderLayout;
 	
 	private CityModel mCityModel;
 	private WeatherModel[] mWeatherModelArray;
@@ -72,8 +76,11 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
         uiViewPager = (ViewPager)findViewById(R.id.activity_main_forecast_pager_viewpager);
         uiViewPagerIndicatorView = (ViewPagerIndicatorView)findViewById(R.id.activity_main_forecast_view_pager_indicator_view);
         uiNoResultsTextView = (TextView)findViewById(R.id.activity_main_forecast_no_results);
+        uiMainHeaderLayout = (LinearLayout)findViewById(R.id.activity_main_header_layout);
         
-        uiSelectNewCityTextView.setOnClickListener(this);
+        // button is not available on tablet resolutions
+        if (uiSelectNewCityTextView != null) 
+        	uiSelectNewCityTextView.setOnClickListener(this);
         
 		requestWeatherInformation_Start(null);
     }
@@ -83,7 +90,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	 */
 	public void requestWeatherInformation_Start(String city) {		
 		// close the navigation drawer if it is open
-		if (getNavigationDrawer().isDrawerOpen(Gravity.LEFT)) {
+		if (getNavigationDrawer() != null && getNavigationDrawer().isDrawerOpen(Gravity.LEFT)) {
 			getNavigationDrawer().closeDrawer(Gravity.LEFT);
 		}
 		
@@ -144,6 +151,20 @@ public class MainActivity extends BaseActivity implements OnClickListener, Volle
 	 */
 	private void selectNewCity_Click() {
 		getNavigationDrawer().openDrawer(Gravity.LEFT);
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		
+		// remove the "select new city" button when the device changes to landscape orientation
+		if (uiMainHeaderLayout != null) {
+			if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+				uiMainHeaderLayout.setVisibility(View.GONE);
+			} else {
+				uiMainHeaderLayout.setVisibility(View.VISIBLE);
+			}
+		}
 	}
 	
 	@Override
