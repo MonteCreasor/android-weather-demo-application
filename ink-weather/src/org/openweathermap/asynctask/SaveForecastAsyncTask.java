@@ -14,6 +14,7 @@ import org.openweathermap.sql.model.CityModel;
 import org.openweathermap.sql.model.IconModel;
 import org.openweathermap.sql.model.WeatherModel;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 /**
@@ -55,13 +56,15 @@ public class SaveForecastAsyncTask extends BaseAsyncTask {
 			);
 			
 			//  Update the last viewed timestamp
-			int testUpdate = WeatherApplication.getInstance().getSQLProvider().update(
-				cityModel, 
-				"pid = ?", 
-				new String[] {String.valueOf(cityPid)}
-			);
+			ContentValues contentValues = new ContentValues();
+			contentValues.put("lastViewedTimestamp", System.currentTimeMillis());
 			
-			System.out.println("test");
+			WeatherApplication.getInstance().getSQLProvider().update(
+				contentValues, 
+				"pid = ?", 
+				new String[] {String.valueOf(cityPid)},
+				CityModel.class
+			);
 		}
 		
 		// insert weather the models
